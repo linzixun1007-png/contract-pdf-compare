@@ -1,0 +1,1 @@
+pymupdf==1.26.7 --hash=sha256:425b1befe40d41b72eb0fe211711c7ae334db5eb60307e9dd09066ed060cceba

@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.venv*/
+build/
+dist/
+对比报告/
+report.html
+gui-check.json
+验收结果.json
+*.whl
+*.log
+third-party-sources/
+NotoSansCJKsc.otf
