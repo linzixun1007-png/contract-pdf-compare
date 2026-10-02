@@ -24,7 +24,7 @@ def run_self_test():
         ("table_base", "table_qr_imgwm", True),
         ("table_base", "table_all_wm", True),
         ("table_base", "table_num_changed", False),
-        ("table_base", "table_reordered", False),
+        ("table_regression_v12/grid_A", "table_regression_v12/grid_reordered_B", False),
     ]
     evidence = []
     for profile in PROFILES:
@@ -64,6 +64,10 @@ def run_self_test():
                      normalize_text("AB C", profile="strict") != normalize_text("A BC", profile="strict")})
     evidence.append({"case": "strict_superscript", "ok":
                      normalize_text("m²", profile="strict") != normalize_text("m2", profile="strict")})
+    from regression_tests import run_region_checks
+    evidence.extend(run_region_checks(root))
+    from table_regression_tests import run_table_checks
+    evidence.extend(run_table_checks(root))
     return {"version": VERSION, "passed": all(row["ok"] for row in evidence),
             "passed_count": sum(row["ok"] for row in evidence), "total_count": len(evidence),
             "checks": evidence}

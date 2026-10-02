@@ -58,6 +58,8 @@ def find_pairs_by_list(list_path: str):
 
 
 def main():
+    from compare import _safe_console
+    _safe_console()
     ap = argparse.ArgumentParser(description="批量对比内部定稿 PDF 与医院水印版 PDF")
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--internal", help="内部定稿版文件夹")
@@ -67,7 +69,13 @@ def main():
                     help="医院名称，可重复；用于识别水印文字")
     ap.add_argument("--out", default="output/batch", help="批量报告输出目录")
     ap.add_argument("--profile", choices=["strict", "regular", "relaxed"], default="strict")
+    ap.add_argument("--ignore-regions", help="用于各文件对的忽略区域 JSON")
     args = ap.parse_args()
+    from ignore_regions import IgnoreConfig
+    try:
+        rules = IgnoreConfig.load(args.ignore_regions) if args.ignore_regions else IgnoreConfig()
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        ap.error(f"忽略区域规则无效：{error}")
 
     if args.internal:
         if not args.hospital:
@@ -94,7 +102,7 @@ def main():
             rows.append([name, "缺失文件", "-", "", ""])
             continue
         try:
-            r = compare_pdfs(a, b, hospital_names=args.hospital_name, profile=args.profile)
+            r = compare_pdfs(a, b, hospital_names=args.hospital_name, profile=args.profile, ignore_config=rules)
         except Exception as e:  # noqa: BLE001
             n_err += 1
             print(f"{name[:32]:<34}{'读取失败':<10}-")

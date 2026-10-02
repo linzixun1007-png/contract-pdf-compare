@@ -31,14 +31,18 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from pdf_compare import compare_pdfs, PROFILES, VERSION          # noqa: E402
 from report_html import render_report         # noqa: E402
+from ignore_regions import IgnoreConfig
 
 
 class App:
     def __init__(self, root: tk.Tk):
         self.root = root
         root.title(f"合同 PDF 对比工具 {VERSION}")
-        root.geometry("850x800")
-        root.minsize(790, 740)
+        root.geometry("980x900")
+        root.minsize(850, 780)
+        self.ignore_config = IgnoreConfig()
+        self.rules_source_paths = None
+        self.var_ignore = tk.StringVar(value="未设置忽略区域，默认比较全部可提取文字。")
 
         # 顶部说明
         head = tk.Frame(root, bg="#1f2937")
@@ -80,6 +84,11 @@ class App:
         tk.Label(body, text="⑤ 报告保存文件夹", anchor="w").grid(row=9, column=0, sticky="w")
         tk.Entry(body, textvariable=self.var_out).grid(row=10, column=0, columnspan=2, sticky="ew", ipady=4)
         tk.Button(body, text="选择文件夹…", command=self.pick_output).grid(row=10, column=2, padx=(8, 0))
+        self.region_button = tk.Button(body, text="⑥ 预览并设置忽略区域…", command=self.edit_regions)
+        self.region_button.grid(row=11, column=0, columnspan=2, sticky="w", pady=(10, 3))
+        tk.Button(body, text="清空忽略区域", command=self.clear_regions).grid(row=11, column=2, pady=(10, 3))
+        tk.Label(body, textvariable=self.var_ignore, anchor="w", wraplength=840,
+                 fg="#92400e").grid(row=12, column=0, columnspan=3, sticky="w", pady=(0, 4))
 
         body.columnconfigure(0, weight=1)
 
@@ -113,6 +122,28 @@ class App:
             "https://github.com/linzixun1007-png/contract-pdf-compare\n\n"
             "第三方组件的独立许可见发布包的 LICENSE、THIRD_PARTY_NOTICES.md 和 licenses 文件夹。",
             parent=self.root)
+
+    def file_pair(self):
+        return tuple(str(Path(v.get()).resolve()) for v in (self.var_a, self.var_b))
+
+    def edit_regions(self):
+        if not self.var_a.get().strip() or not self.var_b.get().strip():
+            messagebox.showwarning("请先选择文件", "先选择两份 PDF，再预览并设置忽略区域。")
+            return
+        from region_editor import RegionEditor
+        try:
+            pair = self.file_pair()
+            def applied(config):
+                self.ignore_config, self.rules_source_paths = config, pair
+                self.var_ignore.set(f"已设置 {len(config.regions)} 个忽略区域；报告会列出实际排除的文字。")
+            RegionEditor(self.root, *pair, self.ignore_config, applied)
+        except Exception as error:
+            messagebox.showerror("无法预览", str(error), parent=self.root)
+
+    def clear_regions(self):
+        self.ignore_config = IgnoreConfig()
+        self.rules_source_paths = None
+        self.var_ignore.set("未设置忽略区域，默认比较全部可提取文字。")
 
     def _file_row(self, parent, label, var, r):
         tk.Label(parent, text=label, font=("Microsoft YaHei UI", 10),
@@ -166,16 +197,20 @@ class App:
             return
         names = [x.strip() for x in self.var_h.get().replace("，", ",").split(",") if x.strip()]
         profile, folder = self.profile_key(), self.var_out.get().strip()
+        if self.ignore_config.regions and self.rules_source_paths != self.file_pair():
+            messagebox.showwarning("请重新预览区域", "选择的 PDF 已改变，请打开区域预览检查并点击「使用这些规则」。")
+            return
+        rules = IgnoreConfig(list(self.ignore_config.regions))
         self.btn.config(state="disabled")
         self.log.delete("1.0", "end")
         self.pb.pack(fill="x", padx=24, pady=(0, 6))
         self.pb.start(12)
-        threading.Thread(target=self._run, args=(a, b, names, profile, folder), daemon=True).start()
+        threading.Thread(target=self._run, args=(a, b, names, profile, folder, rules), daemon=True).start()
 
-    def _run(self, a, b, names, profile, folder):
+    def _run(self, a, b, names, profile, folder, rules):
         try:
             self.root.after(0, self._log, "正在提取文字层……\n")
-            result = compare_pdfs(a, b, hospital_names=names, profile=profile)
+            result = compare_pdfs(a, b, hospital_names=names, profile=profile, ignore_config=rules)
 
             self.root.after(0, self._log, "正在生成报告……\n")
             Path(folder).mkdir(parents=True, exist_ok=True)
@@ -215,6 +250,7 @@ class App:
                     self._log(f"{i}. 【新增】第{d.page+1}页（医院版有、内部版无）\n")
                     self._log(f"   内容：{d.new}\n\n")
         self._log(f"水印已忽略：{len(result.b_watermarks)} 行\n")
+        self._log(f"用户指定区域排除：A {len(result.a_ignored)} 段，B {len(result.b_ignored)} 段\n")
         for warning in result.warnings:
             self._log(warning + "\n")
         self._log(f"\n报告已生成：{out}\n")
@@ -250,15 +286,19 @@ def main():
         root.withdraw()
         app = App(root)
         assert app.about_button.cget("text") == "关于与开源许可"
+        assert app.region_button.cget("text") == "⑥ 预览并设置忽略区域…"
         for value in PROFILES.values():
             app.var_profile.set(value[0])
             app._profile_changed()
             assert app.var_policy.get() == value[1]
+        from gui_acceptance import check_region_editor
+        checks = check_region_editor(root, app)
+        assert all(row["ok"] for row in checks), checks
         root.update_idletasks()
         root.destroy()
         if args.result:
             Path(args.result).write_text(json.dumps({"passed": True, "profiles": list(PROFILES),
-                                                     "version": VERSION}), encoding="utf-8")
+                                                     "version": VERSION, "region_checks": checks}), encoding="utf-8")
         return 0
     App(root)
     root.mainloop()

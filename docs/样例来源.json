@@ -1,0 +1,1274 @@
+{
+  "classification": "synthetic_test_fixtures",
+  "real_contracts": false,
+  "checked_count": 67,
+  "checks": [
+    {
+      "path": "samples/hospital_A_shift.pdf",
+      "sha256": "bb4a26190e907718cf616a19c5c79d860bbd2dee9550dea4d897eff1972c21fa",
+      "git_blob_sha": "89045912419e3b1909ec818763671a9781dadf48",
+      "provenance": "Text matches a freshly regenerated file from make_samples.py or make_samples2.py; all parties and amounts are fictional test constants.",
+      "pages": [
+        "医疗设备采购合同\n合同编号：HT-2026-0912\n甲方（采购方）：某某医院\n乙方（供应方）：某某医疗科技有限公司\n第一条 合同标的\n1.1 乙方向甲方提供彩色多普勒超声诊断仪，型号 XQ-800，数量 3 台。\n1.2 设备应满足国家医疗器械相关标准，并具备有效的注册证。\n第二条 合同金额\n2.1 本合同总金额为人民币壹佰贰拾万元整（￥1,200,000.00）。\n2.2 上述金额已包含设备价款、运输、安装及调试费用。\n第三条 交付与验收\n3.1 乙方应于合同生效之日起 45 日内完成交付。\n3.2 甲方应在设备到货后 10 个工作日内完成验收。\n第四条 付款方式\n4.1 验收合格后 30 日内，甲方支付合同总金额的 90%。\n4.2 质保金为合同总金额的 10%，质保期满后无息退还。\n某某医院\n",
+        "第五条 质量保证\n5.1 乙方对提供的设备提供 24 个月免费质保。\n5.2 质保期内非人为损坏，乙方负责免费维修或更换。\n第六条 违约责任\n6.1 任何一方违约，应向守约方支付合同总金额 5% 的违约金。\n6.2 因不可抗力导致无法履行的，双方可协商解除合同。\n第七条 争议解决\n7.1 双方因履行本合同发生争议，应友好协商解决。\n7.2 协商不成的，提交甲方所在地人民法院诉讼解决。\n第八条 其他约定\n8.1 本合同一式肆份，甲乙双方各执贰份，具有同等法律效力。\n8.2 本合同自双方签字盖章之日起生效。\n甲方（盖章）：某某医院\n乙方（盖章）：某某医疗科技有限公司\n签订日期：2026 年 9 月 12 日\n某某医院\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/hospital_B_amount.pdf",
+      "sha256": "294a431c32c3b9c0c3a9ce22c95533b1e907ed6284258525ff3e1245ba8e29cf",
+      "git_blob_sha": "3e72c093a62e666b7c58be1efd6b7807e62b7ba6",
+      "provenance": "Text matches a freshly regenerated file from make_samples.py or make_samples2.py; all parties and amounts are fictional test constants.",
+      "pages": [
+        "医疗设备采购合同\n合同编号：HT-2026-0912\n甲方（采购方）：某某医院\n乙方（供应方）：某某医疗科技有限公司\n第一条 合同标的\n1.1 乙方向甲方提供彩色多普勒超声诊断仪，型号 XQ-800，数量 3 台。\n1.2 设备应满足国家医疗器械相关标准，并具备有效的注册证。\n第二条 合同金额\n2.1 本合同总金额为人民币壹佰\u0000拾万元整（￥1,500,000.00）。\n2.2 上述金额已包含设备价款、运输、安装及调试费用。\n第三条 交付与验收\n3.1 乙方应于合同生效之日起 45 日内完成交付。\n3.2 甲方应在设备到货后 10 个工作日内完成验收。\n第四条 付款方式\n4.1 验收合格后 30 日内，甲方支付合同总金额的 90%。\n4.2 质保金为合同总金额的 10%，质保期满后无息退还。\n某某医院\n",
+        "第五条 质量保证\n5.1 乙方对提供的设备提供 24 个月免费质保。\n5.2 质保期内非人为损坏，乙方负责免费维修或更换。\n第六条 违约责任\n6.1 任何一方违约，应向守约方支付合同总金额 5% 的违约金。\n6.2 因不可抗力导致无法履行的，双方可协商解除合同。\n第七条 争议解决\n7.1 双方因履行本合同发生争议，应友好协商解决。\n7.2 协商不成的，提交甲方所在地人民法院诉讼解决。\n第八条 其他约定\n8.1 本合同一式肆份，甲乙双方各执贰份，具有同等法律效力。\n8.2 本合同自双方签字盖章之日起生效。\n甲方（盖章）：某某医院\n乙方（盖章）：某某医疗科技有限公司\n签订日期：2026 年 9 月 12 日\n某某医院\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/hospital_C_textwm.pdf",
+      "sha256": "3f1e3fc40682b7d6bd519e0762926d6db07556d3db1cb451e1b6b09dccb0bf19",
+      "git_blob_sha": "a0e05bee8e6c4a6bd9308203cec25f8a4fe520a7",
+      "provenance": "Text matches a freshly regenerated file from make_samples.py or make_samples2.py; all parties and amounts are fictional test constants.",
+      "pages": [
+        "某某医院  内\u0000\u0000\u0000医疗设备采购合同\n合同编号：HT-2026-0912\n甲方（采购方）：某某医院\n乙方（供应方）：某某医疗科技有限公司\n第一条 合同标的\n1.1 乙方向甲方提供彩色多普勒超声诊断仪，型号 XQ-800，数量 3 台。\n1.2 设备应满足国家医疗器械相关标准，并具备有效的注册证。\n第二条 合同金额\n2.1 本合同总金额为人民币壹佰贰拾万元整（￥1,200,000.00）。\n2.2 上述金额已包含设备价款、运输、安装及调试费用。\n第三条 交付与验收\n3.1 乙方应于合同生效之日起 45 日内完成交付。\n3.2 甲方应在设备到货后 10 个工作日内完成验收。\n第四条 付款方式\n4.1 验收合格后 30 日内，甲方支付合同总金额的 90%。\n4.2 质保金为合同总金额的 10%，质保期满后无息退还。\n某某医院\n",
+        "某某医院  内\u0000\u0000\u0000第五条 质量保证\n5.1 乙方对提供的设备提供 24 个月免费质保。\n5.2 质保期内非人为损坏，乙方负责免费维修或更换。\n第六条 违约责任\n6.1 任何一方违约，应向守约方支付合同总金额 5% 的违约金。\n6.2 因不可抗力导致无法履行的，双方可协商解除合同。\n第七条 争议解决\n7.1 双方因履行本合同发生争议，应友好协商解决。\n7.2 协商不成的，提交甲方所在地人民法院诉讼解决。\n第八条 其他约定\n8.1 本合同一式肆份，甲乙双方各执贰份，具有同等法律效力。\n8.2 本合同自双方签字盖章之日起生效。\n甲方（盖章）：某某医院\n乙方（盖章）：某某医疗科技有限公司\n签订日期：2026 年 9 月 12 日\n某某医院\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/hospital_D_deleted.pdf",
+      "sha256": "52888636dc2051899522c5cd046529ca37acddcde379c65ce7627e79120f71e2",
+      "git_blob_sha": "791b968373b4c8a71b93daf07baed5f7cdc23cf4",
+      "provenance": "Text matches a freshly regenerated file from make_samples.py or make_samples2.py; all parties and amounts are fictional test constants.",
+      "pages": [
+        "医疗设备采购合同\n合同编号：HT-2026-0912\n甲方（采购方）：某某医院\n乙方（供应方）：某某医疗科技有限公司\n第一条 合同标的\n1.1 乙方向甲方提供彩色多普勒超声诊断仪，型号 XQ-800，数量 3 台。\n1.2 设备应满足国家医疗器械相关标准，并具备有效的注册证。\n第二条 合同金额\n2.1 本合同总金额为人民币壹佰贰拾万元整（￥1,200,000.00）。\n2.2 上述金额已包含设备价款、运输、安装及调试费用。\n第三条 交付与验收\n3.1 乙方应于合同生效之日起 45 日内完成交付。\n3.2 甲方应在设备到货后 10 个工作日内完成验收。\n第四条 付款方式\n4.1 验收合格后 30 日内，甲方支付合同总金额的 90%。\n4.2 质保金为合同总金额的 10%，质保期满后无息退还。\n某某医院\n",
+        "第五条 质量保证\n5.1 乙方对提供的设备提供 24 个月免费质保。\n5.2 质保期内非人为损坏，乙方负责免费维修或更换。\n第七条 争议解决\n7.1 双方因履行本合同发生争议，应友好协商解决。\n7.2 协商不成的，提交甲方所在地人民法院诉讼解决。\n第八条 其他约定\n8.1 本合同一式肆份，甲乙双方各执贰份，具有同等法律效力。\n8.2 本合同自双方签字盖章之日起生效。\n甲方（盖章）：某某医院\n乙方（盖章）：某某医疗科技有限公司\n签订日期：2026 年 9 月 12 日\n某某医院\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/hospital_E_narrow.pdf",
+      "sha256": "f971dd27a641dcccb2aabe04aa31e40e795374ec547385675b03a60879dbc88c",
+      "git_blob_sha": "bc62b66d2cbbc3856c17dc818b37139b1ad2d4f2",
+      "provenance": "Text matches a freshly regenerated file from make_samples.py or make_samples2.py; all parties and amounts are fictional test constants.",
+      "pages": [
+        "医疗设备采购合同\n合同编号：HT-2026-0912\n甲方（采购方）：某某医院\n乙方（供应方）：某某医疗科技有限公司\n第一条 合同标的\n1.1 乙方向甲方提供彩色多普勒超声诊断仪，型号 XQ-8\n00，数量 3 台。\n1.2 设备应满足国家医疗器械相关标准，并具备有效的\n注册证。\n第二条 合同金额\n2.1 本合同总金额为人民币壹佰贰拾万元整（￥1,200,0\n00.00）。\n2.2 上述金额已包含设备价款、运输、安装及调试费用\n。\n第三条 交付与验收\n3.1 乙方应于合同生效之日起 45 日内完成交付。\n3.2 甲方应在设备到货后 10 个工作日内完成验收。\n第四条 付款方式\n4.1 验收合格后 30 日内，甲方支付合同总金额的 90%\n。\n4.2 质保金为合同总金额的 10%，质保期满后无息退还\n。\n某某医院\n",
+        "第五条 质量保证\n5.1 乙方对提供的设备提供 24 个月免费质保。\n5.2 质保期内非人为损坏，乙方负责免费维修或更换。\n第六条 违约责任\n6.1 任何一方违约，应向守约方支付合同总金额 5% 的\n违约金。\n6.2 因不可抗力导致无法履行的，双方可协商解除合同\n。\n第七条 争议解决\n7.1 双方因履行本合同发生争议，应友好协商解决。\n7.2 协商不成的，提交甲方所在地人民法院诉讼解决。\n第八条 其他约定\n8.1 本合同一式肆份，甲乙双方各执贰份，具有同等法\n律效力。\n8.2 本合同自双方签字盖章之日起生效。\n甲方（盖章）：某某医院\n乙方（盖章）：某某医疗科技有限公司\n签订日期：2026 年 9 月 12 日\n某某医院\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/hospital_F_narrow_amount.pdf",
+      "sha256": "0fffe37826d5906d2a6f36b5088855b3be6bc9b90a1ac733ce836268d45114da",
+      "git_blob_sha": "40bb5c94b2925286291bdb8465ae9ef2f4bb46a1",
+      "provenance": "Text matches a freshly regenerated file from make_samples.py or make_samples2.py; all parties and amounts are fictional test constants.",
+      "pages": [
+        "医疗设备采购合同\n合同编号：HT-2026-0912\n甲方（采购方）：某某医院\n乙方（供应方）：某某医疗科技有限公司\n第一条 合同标的\n1.1 乙方向甲方提供彩色多普勒超声诊断仪，型号 XQ-8\n00，数量 3 台。\n1.2 设备应满足国家医疗器械相关标准，并具备有效的\n注册证。\n第二条 合同金额\n2.1 本合同总金额为人民币壹佰\u0000拾万元整（￥1,500,0\n00.00）。\n2.2 上述金额已包含设备价款、运输、安装及调试费用\n。\n第三条 交付与验收\n3.1 乙方应于合同生效之日起 45 日内完成交付。\n3.2 甲方应在设备到货后 10 个工作日内完成验收。\n第四条 付款方式\n4.1 验收合格后 30 日内，甲方支付合同总金额的 90%\n。\n4.2 质保金为合同总金额的 10%，质保期满后无息退还\n。\n某某医院\n",
+        "第五条 质量保证\n5.1 乙方对提供的设备提供 24 个月免费质保。\n5.2 质保期内非人为损坏，乙方负责免费维修或更换。\n第六条 违约责任\n6.1 任何一方违约，应向守约方支付合同总金额 5% 的\n违约金。\n6.2 因不可抗力导致无法履行的，双方可协商解除合同\n。\n第七条 争议解决\n7.1 双方因履行本合同发生争议，应友好协商解决。\n7.2 协商不成的，提交甲方所在地人民法院诉讼解决。\n第八条 其他约定\n8.1 本合同一式肆份，甲乙双方各执贰份，具有同等法\n律效力。\n8.2 本合同自双方签字盖章之日起生效。\n甲方（盖章）：某某医院\n乙方（盖章）：某某医疗科技有限公司\n签订日期：2026 年 9 月 12 日\n某某医院\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/internal_draft.pdf",
+      "sha256": "da2b45bd1268eb7bbebafbfad23f756c4795fbf05584439443f425cb8ce4fb26",
+      "git_blob_sha": "bf78fbffd7d12b8980bc232bda5e24f7c705c9d8",
+      "provenance": "Text matches a freshly regenerated file from make_samples.py or make_samples2.py; all parties and amounts are fictional test constants.",
+      "pages": [
+        "医疗设备采购合同\n合同编号：HT-2026-0912\n甲方（采购方）：某某医院\n乙方（供应方）：某某医疗科技有限公司\n第一条 合同标的\n1.1 乙方向甲方提供彩色多普勒超声诊断仪，型号 XQ-800，数量 3 台。\n1.2 设备应满足国家医疗器械相关标准，并具备有效的注册证。\n第二条 合同金额\n2.1 本合同总金额为人民币壹佰贰拾万元整（￥1,200,000.00）。\n2.2 上述金额已包含设备价款、运输、安装及调试费用。\n第三条 交付与验收\n3.1 乙方应于合同生效之日起 45 日内完成交付。\n3.2 甲方应在设备到货后 10 个工作日内完成验收。\n第四条 付款方式\n4.1 验收合格后 30 日内，甲方支付合同总金额的 90%。\n4.2 质保金为合同总金额的 10%，质保期满后无息退还。\n",
+        "第五条 质量保证\n5.1 乙方对提供的设备提供 24 个月免费质保。\n5.2 质保期内非人为损坏，乙方负责免费维修或更换。\n第六条 违约责任\n6.1 任何一方违约，应向守约方支付合同总金额 5% 的违约金。\n6.2 因不可抗力导致无法履行的，双方可协商解除合同。\n第七条 争议解决\n7.1 双方因履行本合同发生争议，应友好协商解决。\n7.2 协商不成的，提交甲方所在地人民法院诉讼解决。\n第八条 其他约定\n8.1 本合同一式肆份，甲乙双方各执贰份，具有同等法律效力。\n8.2 本合同自双方签字盖章之日起生效。\n甲方（盖章）：某某医院\n乙方（盖章）：某某医疗科技有限公司\n签订日期：2026 年 9 月 12 日\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/added_scan_page_A.pdf",
+      "sha256": "1c16c6c903ebcd480a29d52a838a51ed54e5c6ca4286dcb700dabfc49d68a79d",
+      "git_blob_sha": "35c8b24acbc8556edfe9af7c5c3a47a2717a8de6",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Delivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/added_scan_page_B.pdf",
+      "sha256": "dc2d82e23740aaffea9776227a74aa0a7d0495cd124add2b8745f71cc081d030",
+      "git_blob_sha": "11890e1b5078c9c844355a1bd516090fbe2b529b",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Delivery within 45 days;\n",
+        ""
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/english_word_boundary_A.pdf",
+      "sha256": "2b8fe4ad2079b1af8b1053ebc2975f6d8ad513832df8a10dcf605e12804eee25",
+      "git_blob_sha": "94f0363f285124bd1435e65901a16e6d821e1a4a",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Model: AB C;\nDelivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/english_word_boundary_B.pdf",
+      "sha256": "c64dcf2a875bea6226b1481c9e99f9bec105a546d7369106141121c7aa415dee",
+      "git_blob_sha": "b08babefda7e129c3a3f0948f2a015ca7f339b96",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Model: A BC;\nDelivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/large_font_amount_A.pdf",
+      "sha256": "bdf18f8f6dd5491273ab4b4f6086b48bcca0c0e0cd8b0560e1226e92e0f7bc34",
+      "git_blob_sha": "bce0d654445a3da710b6a9176ff2bba620811094",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Amount: 1000\nDelivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183002+08'00'",
+        "modDate": "D:20261001183002+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/large_font_amount_B.pdf",
+      "sha256": "d0a706631bff9fd8af032fa2c261c458a290e7797bb396e1f02c5f830f4ed511",
+      "git_blob_sha": "25c84cb1a04ffe83d3fa794332eccc8ca89dfa0c",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Amount: 9000\nDelivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183002+08'00'",
+        "modDate": "D:20261001183002+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/mixed_scan_changed_A.pdf",
+      "sha256": "cd2de5ba98e3311bbbf46d22549a6dc35efcb64a334bde31fbd68d6a57a9da87",
+      "git_blob_sha": "3e96355b30aa21ba2e4657ff6a3366e85b05dd90",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Delivery within 45 days;\n",
+        ""
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183002+08'00'",
+        "modDate": "D:20261001183002+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/mixed_scan_changed_B.pdf",
+      "sha256": "b4da72fc9c4d2bf0e317c457e2edbff0581a839293d413a9ec55ce3a1ba13e94",
+      "git_blob_sha": "56e6a23bf5c9687b64767dfdb4ffbad7c8e68781",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Delivery within 45 days;\n",
+        ""
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183002+08'00'",
+        "modDate": "D:20261001183002+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/page_size_A.pdf",
+      "sha256": "b0c9341820c3e4c441ead44e94231ec61ed9cd89685ccc46d1835759bd1ba753",
+      "git_blob_sha": "864ced66f05b27e85e510260e90bd1c5e18a5334",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Delivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/page_size_B.pdf",
+      "sha256": "66a1475dfcc5da7d363c39534ef33894775f6015770b8d980183b4cb7e125a09",
+      "git_blob_sha": "dca9eb801606356e60bbd5ec036887a4efe65d10",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Delivery within 45 days;\nWATERMARK\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/rotated_amount_A.pdf",
+      "sha256": "79ebaa12d595e21fc5cea47c61839d68e4a7c58a1a03b820a0c6d13e543f7792",
+      "git_blob_sha": "96c01478301c6738229d43d475b01ee26c3c2a9d",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Amount: 1000\nDelivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/rotated_amount_B.pdf",
+      "sha256": "f54d6a5bd44284e411702ffda62c38c9d6cf9bb70e85173a449f94b3f9573831",
+      "git_blob_sha": "7209a02cca4329cca1d17c66e305228c30f34402",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Amount: 9000\nDelivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/same_visual_different_object_order_A.pdf",
+      "sha256": "13c831b4ce50bad31adee5ac48865f083566dbc7e3029cc176906aa62a24f245",
+      "git_blob_sha": "051f8eca166d6f211c88c99325fa78f1cda8dc38",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Contract: A001;\nAmount: 1000;\nDelivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/same_visual_different_object_order_B.pdf",
+      "sha256": "2ac221ce6eb9ff46d021de92a169b48b1b2b56c630f3ca90fc49486da415e9ca",
+      "git_blob_sha": "7703f2ff9efd8047306732301a942f25657b3218",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Delivery within 45 days;\nAmount: 1000;\nContract: A001;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/scan_only_changed_A.pdf",
+      "sha256": "9c64f2870bfffc050734553bf1370ea674ef34ebbddb6e293776312a74b96d70",
+      "git_blob_sha": "af9e75959a5c6ef363a4ddb0c8df3ffa8f9e3188",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        ""
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183002+08'00'",
+        "modDate": "D:20261001183002+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/scan_only_changed_B.pdf",
+      "sha256": "81bdd3e245b944bd6b163a066325875ed1611c20c22f771c3e0c8a238264cbf1",
+      "git_blob_sha": "310685a987a1729edfdaafa8dbb50d60583aef90",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        ""
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183002+08'00'",
+        "modDate": "D:20261001183002+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/short_hospital_party_A.pdf",
+      "sha256": "61991287c87af69c4a2ed47fbe846f4d4bcea4ac24e34a324e57a24f90c7a863",
+      "git_blob_sha": "2977b5dbc39e90095e421f3c93591846f2522799",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "甲方：某某医院\nDelivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/short_hospital_party_B.pdf",
+      "sha256": "0dcda21209f04793a67559bdb91f7b416bc69b1eb8be0d1717f2e0bfefe65318",
+      "git_blob_sha": "82214c4ac14975bb0fb6fd1fa04481d47c374024",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "甲方：某某医院分院\nDelivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/table_cell_boundary_changed_A.pdf",
+      "sha256": "60df6a70bf3a2449dad6f0f9d9824ebfb05b1f9e84a55b64dbaad889f8f6ae9d",
+      "git_blob_sha": "69ca9ff6f776b4d507e3a862406ba4552d064447",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Item\nQuantity\nUnit price\nA\n12\n3\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/table_cell_boundary_changed_B.pdf",
+      "sha256": "3f4fcc51aafa0bac2fd2a950cf41bd66ba05d795737c63f9f5155c68be299b52",
+      "git_blob_sha": "1ec2de7eaf3f9e19405c0b1b3c57bfc942aae0a3",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Item\nQuantity\nUnit price\nA\n1\n23\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/top_right_contract_id_A.pdf",
+      "sha256": "7d9b0e4c685d6ea7a25d440854d310649502d9251b262504b4ff44a5c48dc032",
+      "git_blob_sha": "15c6867eb3ad7d411ad1a7a5fc52a168d0aa7afc",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Contract: A001\nDelivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183002+08'00'",
+        "modDate": "D:20261001183002+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/top_right_contract_id_B.pdf",
+      "sha256": "f67431e8527cb2efef50454d1c2bdb76b96e99e549c53deff498c39a8b7cd888",
+      "git_blob_sha": "a3dedd54e2cc407a1d9cb6c601b35d2891ac3b0b",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Contract: A009\nDelivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183002+08'00'",
+        "modDate": "D:20261001183002+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/unicode_superscript_A.pdf",
+      "sha256": "9d51b3ecd93a88c13a738941a24672e474e5c16b904f6a1df8ca801c0660f326",
+      "git_blob_sha": "9d49dd8d7939c21eaa4a29a7519d0de4d7e4fb16",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Unit: m²;\nDelivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression/unicode_superscript_B.pdf",
+      "sha256": "4a267e61e82a7900f230c7396c5a3bee2d0720ad4c26302bbfb4158f61316995",
+      "git_blob_sha": "c0550f429f485a6f76887236f750845af1098d77",
+      "provenance": "Created locally by make_regression_samples.py from fixed fictional test strings and generated scan images.",
+      "pages": [
+        "Unit: m2;\nDelivery within 45 days;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.3",
+        "title": "untitled",
+        "author": "anonymous",
+        "subject": "unspecified",
+        "keywords": "",
+        "creator": "anonymous",
+        "producer": "ReportLab PDF Library - (opensource)",
+        "creationDate": "D:20261001183003+08'00'",
+        "modDate": "D:20261001183003+08'00'",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/table_all_wm.pdf",
+      "sha256": "13c30793f650dd6d79e8f594d84799ef4f367ce3fa025cfc76f9a8e84e1a03cf",
+      "git_blob_sha": "a39bf327a50bfc4f303ed8c8e6ac7ae31587fd85",
+      "provenance": "Text matches a freshly regenerated file from make_samples.py or make_samples2.py; all parties and amounts are fictional test constants.",
+      "pages": [
+        "某某医院  内\u0000\u0000\u0000医疗设备采购合同\n合同编号：HT-2026-0912\n甲方（采购方）：某某医院\n乙方（供应方）：某某医疗科技有限公司\n第一条 设备清单及价款\n序号\n设备名称\n型号\n单位\n数量\n单价(元)\n金额(元)\n1\n彩色多普勒超声诊断仪\nXQ-800\n台\n3\n250000.00\n750000.00\n2\n便携式监护仪\nPM-200\n台\n10\n18000.00\n180000.00\n3\n输液泵\nIP-50\n台\n20\n4500.00\n90000.00\n4\n除颤监护仪\nDF-300\n台\n2\n68000.00\n136000.00\n5\n心电图机\nECG-12\n台\n4\n22000.00\n88000.00\n合计\n1,244,000.00\n第二条 上述价款已包含运输、安装及调试费用。\n第三条 乙方应于合同生效之日起 45 日内完成交付。\n某某医院\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/table_base.pdf",
+      "sha256": "061d54f88a0995408dd428695a8963db8595b01602edfe68377143a386d83dda",
+      "git_blob_sha": "30267a5783d545f0b31909fe7a81b6c4b99ea472",
+      "provenance": "Text matches a freshly regenerated file from make_samples.py or make_samples2.py; all parties and amounts are fictional test constants.",
+      "pages": [
+        "医疗设备采购合同\n合同编号：HT-2026-0912\n甲方（采购方）：某某医院\n乙方（供应方）：某某医疗科技有限公司\n第一条 设备清单及价款\n序号\n设备名称\n型号\n单位\n数量\n单价(元)\n金额(元)\n1\n彩色多普勒超声诊断仪\nXQ-800\n台\n3\n250000.00\n750000.00\n2\n便携式监护仪\nPM-200\n台\n10\n18000.00\n180000.00\n3\n输液泵\nIP-50\n台\n20\n4500.00\n90000.00\n4\n除颤监护仪\nDF-300\n台\n2\n68000.00\n136000.00\n5\n心电图机\nECG-12\n台\n4\n22000.00\n88000.00\n合计\n1,244,000.00\n第二条 上述价款已包含运输、安装及调试费用。\n第三条 乙方应于合同生效之日起 45 日内完成交付。\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/table_num_changed.pdf",
+      "sha256": "c9b1cf5480f7a6a686b2c1c0c73cac636a27646cf1bcb229f05c016242e68fa8",
+      "git_blob_sha": "b8b6c462dfee6729c9e1ca3eda8e5abebe5c354b",
+      "provenance": "Text matches a freshly regenerated file from make_samples.py or make_samples2.py; all parties and amounts are fictional test constants.",
+      "pages": [
+        "医疗设备采购合同\n合同编号：HT-2026-0912\n甲方（采购方）：某某医院\n乙方（供应方）：某某医疗科技有限公司\n第一条 设备清单及价款\n序号\n设备名称\n型号\n单位\n数量\n单价(元)\n金额(元)\n1\n彩色多普勒超声诊断仪\nXQ-800\n台\n5\n250000.00\n1,250,000.00\n2\n便携式监护仪\nPM-200\n台\n10\n18000.00\n180000.00\n3\n输液泵\nIP-50\n台\n20\n4500.00\n90000.00\n4\n除颤监护仪\nDF-300\n台\n2\n68000.00\n136000.00\n5\n心电图机\nECG-12\n台\n4\n22000.00\n88000.00\n合计\n1,744,000.00\n第二条 上述价款已包含运输、安装及调试费用。\n第三条 乙方应于合同生效之日起 45 日内完成交付。\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/table_qr_imgwm.pdf",
+      "sha256": "09fea28657a82b94c55c4bb055be7be5801f0c76daf9dad09ab43bef083049f1",
+      "git_blob_sha": "db088567bf174c62459309e6654d135e9e27372a",
+      "provenance": "Text matches a freshly regenerated file from make_samples.py or make_samples2.py; all parties and amounts are fictional test constants.",
+      "pages": [
+        "医疗设备采购合同\n合同编号：HT-2026-0912\n甲方（采购方）：某某医院\n乙方（供应方）：某某医疗科技有限公司\n第一条 设备清单及价款\n序号\n设备名称\n型号\n单位\n数量\n单价(元)\n金额(元)\n1\n彩色多普勒超声诊断仪\nXQ-800\n台\n3\n250000.00\n750000.00\n2\n便携式监护仪\nPM-200\n台\n10\n18000.00\n180000.00\n3\n输液泵\nIP-50\n台\n20\n4500.00\n90000.00\n4\n除颤监护仪\nDF-300\n台\n2\n68000.00\n136000.00\n5\n心电图机\nECG-12\n台\n4\n22000.00\n88000.00\n合计\n1,244,000.00\n第二条 上述价款已包含运输、安装及调试费用。\n第三条 乙方应于合同生效之日起 45 日内完成交付。\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/table_qr_textwm.pdf",
+      "sha256": "5f62f2ea420f3953f719e1480ad1954616d1b9037f8043cc5247ce5071fd4017",
+      "git_blob_sha": "1372ea262b4ee2c7f52205e3467434740962b066",
+      "provenance": "Text matches a freshly regenerated file from make_samples.py or make_samples2.py; all parties and amounts are fictional test constants.",
+      "pages": [
+        "医疗设备采购合同\n合同编号：HT-2026-0912\n甲方（采购方）：某某医院\n乙方（供应方）：某某医疗科技有限公司\n第一条 设备清单及价款\n序号\n设备名称\n型号\n单位\n数量\n单价(元)\n金额(元)\n1\n彩色多普勒超声诊断仪\nXQ-800\n台\n3\n250000.00\n750000.00\n2\n便携式监护仪\nPM-200\n台\n10\n18000.00\n180000.00\n3\n输液泵\nIP-50\n台\n20\n4500.00\n90000.00\n4\n除颤监护仪\nDF-300\n台\n2\n68000.00\n136000.00\n5\n心电图机\nECG-12\n台\n4\n22000.00\n88000.00\n合计\n1,244,000.00\n第二条 上述价款已包含运输、安装及调试费用。\n第三条 乙方应于合同生效之日起 45 日内完成交付。\n某某医院\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "embedded_files": [],
+      "links": []
+    },
+    {
+      "path": "samples/regression_v12/body_change_B.pdf",
+      "sha256": "0cb28064b24dda47d8ef7dd3b2a805f36a6f27b31983ec75d59a093a1a29f17f",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/excluded_A.pdf",
+      "sha256": "bedca9f41e50facf17467d4c758d701351f25e5beff725708b086905e4bbdd95",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/excluded_B.pdf",
+      "sha256": "c616ae1308b8702b0915b949503b15ffeb570341180887503a941962e6333df1",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/glyph_A.pdf",
+      "sha256": "d9fd56abba44d16dfb5a55830d5e385d6f7d876d30b9b0b304e21f1d2f8998f8",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/glyph_B.pdf",
+      "sha256": "012e349930ac50bf741d9ea5dd06105243a60dea574167eade71d95545e6d1c8",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/page_scope_A.pdf",
+      "sha256": "963d02ad616347e8a755b79e23add5626598496af3c560b00d02911ebbd3237d",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/page_scope_B.pdf",
+      "sha256": "1e0df39b9a69d97aaff5fe922cf278eff2110b4c8b225fa5b5cd237ffaef66b2",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/reflow_A.pdf",
+      "sha256": "3d141513c634be7334f440869b0edb069aa5ff613287737ca2218f91adebd661",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/reflow_B.pdf",
+      "sha256": "be36cff15d9f271a8b7922a436f8442934429aa8ed9f10296d379a902ef6cca6",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/rotated_A.pdf",
+      "sha256": "8649e17990acb138ffabe8ad86416bdab7d746e67c5c2b77ec1c4c8ed6e6f2de",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/rotated_B.pdf",
+      "sha256": "49da77abf84812e03eb98a550d1d1792c172336ead547e35ae65cd7794416fa9",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/scan_mask_A.pdf",
+      "sha256": "c548c4202a3b1bb94eefa29d650820d7d6cbbad7593161fc71e5923a003b36de",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/scan_mask_B.pdf",
+      "sha256": "a6130c0eb24b6002c1028801c95042ba329995f8d2929eab2ea5f50c14ada6d8",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/side_A.pdf",
+      "sha256": "6071d3a3b85e26ae792dae768b18a14d0b48ec31309ffe358b07cbf479e86e25",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/side_B.pdf",
+      "sha256": "daef6b96bc40a54d06e13b97302759bea1e3d6e6c5be80b4b54af3d0784d5707",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/sizes_A.pdf",
+      "sha256": "de89137a7f476c6c90e13a6796afce05ed551202a80fcd4dc3d92b7fe8e3778d",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/regression_v12/sizes_B.pdf",
+      "sha256": "44497bc800c910669bb4973cb64a0c7eddb3a60e43681d5685a57634fca4b449",
+      "provenance": "Generated entirely from the invented ASCII constants in make_regression_v12.py; no business files used."
+    },
+    {
+      "path": "samples/table_regression_v12/grid_A.pdf",
+      "sha256": "4abb71d41b91684b615e59af7dcfebfaa4b4e1708b42fed14ce805906df98ce3",
+      "provenance": "Entirely invented constants in make_table_regression_v12.py; no business input PDF, names or amounts copied.",
+      "pages": [
+        "Invented fee schedule - acceptance fixture\nLabel\nGroup A\nGroup B\nTotal\nSample\n100\n60\n160\nService\n20\n10\n30\nTax\n8.40\n4.20\n12.60\nSubtotal\n128.40\n74.20\n202.60\nPending\n25\n25\nSupport fee\n10\nSupport tax\n0.50\nAll-in total\n213.10\nAppendix B - equipment; Device count 1; Terms remain unchanged;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "Invented acceptance fixture",
+        "author": "Synthetic table generator",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "images": 0
+    },
+    {
+      "path": "samples/table_regression_v12/grid_amount_B.pdf",
+      "sha256": "c8d81aebc93bc7ca7f70deaff446091177753253da0d466b8722f2df01778f2d",
+      "provenance": "Entirely invented constants in make_table_regression_v12.py; no business input PDF, names or amounts copied.",
+      "pages": [
+        "Invented fee schedule - acceptance fixture\nLabel\nGroup A\nGroup B\nTotal\nSample\n100\n60\n160\nService\n20\n10\n30\nTax\n8.40\n4.20\n12.60\nSubtotal\n928.40\n74.20\n202.60\nPending\n25\n25\nSupport fee\n10\nSupport tax\n0.50\nAll-in total\n213.10\nAppendix B - equipment; Device count 1; Terms remain unchanged;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "Invented acceptance fixture",
+        "author": "Synthetic table generator",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "images": 0
+    },
+    {
+      "path": "samples/table_regression_v12/grid_blank_B.pdf",
+      "sha256": "16c9a9b555f53fb5aecadb5cdef1ec039959b6ebf51ecc68c4870128968426a1",
+      "provenance": "Entirely invented constants in make_table_regression_v12.py; no business input PDF, names or amounts copied.",
+      "pages": [
+        "Invented fee schedule - acceptance fixture\nLabel\nGroup A\nGroup B\nTotal\nSample\n100\n60\n160\nService\n20\n10\n30\nTax\n8.40\n4.20\n12.60\nSubtotal\n128.40\n74.20\n202.60\nPending\n25\n25\nSupport fee\n10\nSupport tax\n0.50\nAll-in total\n213.10\nAppendix B - equipment; Device count 1; Terms remain unchanged;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "Invented acceptance fixture",
+        "author": "Synthetic table generator",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "images": 0
+    },
+    {
+      "path": "samples/table_regression_v12/grid_merged_B.pdf",
+      "sha256": "25012846c11c8c943046cfb6540e88bc9575c37564e691879fb6969872509a85",
+      "provenance": "Entirely invented constants in make_table_regression_v12.py; no business input PDF, names or amounts copied.",
+      "pages": [
+        "Invented fee schedule - acceptance fixture\nLabel\nGroup A\nGroup B\nTotal\nSample\n100\n60\n160\nService\n20\n10\n30\nTax\n8.40\n4.20\n12.60\nSubtotal\n128.40\n74.20\n202.60\nPending\n25\n25\nSupport fee\n90\nSupport tax\n0.50\nAll-in total\n213.10\nAppendix B - equipment; Device count 1; Terms remain unchanged;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "Invented acceptance fixture",
+        "author": "Synthetic table generator",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "images": 0
+    },
+    {
+      "path": "samples/table_regression_v12/grid_reordered_B.pdf",
+      "sha256": "6f4b4cb953de2de76a16d6bcf843827b0bb5fd3f8a67e128f5a3b184dd41eda3",
+      "provenance": "Entirely invented constants in make_table_regression_v12.py; no business input PDF, names or amounts copied.",
+      "pages": [
+        "Invented fee schedule - acceptance fixture\nLabel\nGroup A\nGroup B\nTotal\nSample\n100\n60\n160\nService\n20\n10\n30\nSubtotal\n128.40\n74.20\n202.60\nTax\n8.40\n4.20\n12.60\nPending\n25\n25\nSupport fee\n10\nSupport tax\n0.50\nAll-in total\n213.10\nAppendix B - equipment; Device count 1; Terms remain unchanged;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "Invented acceptance fixture",
+        "author": "Synthetic table generator",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "images": 0
+    },
+    {
+      "path": "samples/table_regression_v12/grid_stream_B.pdf",
+      "sha256": "f02e1abed06d9a65ed28d380248222a7335c3d6179e4f0b08d07ec6cfa7dc9b6",
+      "provenance": "Entirely invented constants in make_table_regression_v12.py; no business input PDF, names or amounts copied.",
+      "pages": [
+        "Invented fee schedule - acceptance fixture\nLabel\nGroup A\nGroup B\nTotal\nSample\n100\n60\n160\nService\n20\n10\n30\nPending\n25\n25\nSupport fee\n10\nSupport tax\n0.50\nAll-in total\n213.10\nAppendix B - equipment; Device count 1; Terms remain unchanged;\nSubtotal\n128.40\n74.20\n202.60\nTax\n8.40\n4.20\n12.60\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "Invented acceptance fixture",
+        "author": "Synthetic table generator",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "images": 0
+    },
+    {
+      "path": "samples/table_regression_v12/grid_wholeline_B.pdf",
+      "sha256": "cd3089b775d309f9db288f1b10b0c0921de608642ce2f0fe2a16c68e2e8a6073",
+      "provenance": "Entirely invented constants in make_table_regression_v12.py; no business input PDF, names or amounts copied.",
+      "pages": [
+        "Invented fee schedule - acceptance fixture\nLabel                     Group A           Group B          Total\nSample                    100               60               160\nService                   20                10               30\nTax                       8.40              4.20             12.60\nSubtotal                  128.40            74.20            202.60\nPending                   25                                 25\nSupport fee\n10\nSupport tax\n0.50\nAll-in total\n213.10\nAppendix B - equipment; Device count 1; Terms remain unchanged;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "Invented acceptance fixture",
+        "author": "Synthetic table generator",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "images": 0
+    },
+    {
+      "path": "samples/table_regression_v12/grid_wrap_B.pdf",
+      "sha256": "3ce0a5380392f5dca45b4207d2e1f1d521bec4e908f53475160abdf11d183505",
+      "provenance": "Entirely invented constants in make_table_regression_v12.py; no business input PDF, names or amounts copied.",
+      "pages": [
+        "Invented fee schedule - acceptance fixture\nLabel\nGroup\nA\nGroup\nB\nTotal\nSample\n100\n60\n160\nService\n20\n10\n30\nTax\n8.40\n4.20\n12.60\nSubtotal\n128.40\n74.20\n202.60\nPending\n25\n25\nSupport fee\n10\nSupport tax\n0.50\nAll-in total\n213.10\nAppendix B - equipment; Device count 1; Terms remain unchanged;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "Invented acceptance fixture",
+        "author": "Synthetic table generator",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "images": 0
+    },
+    {
+      "path": "samples/table_regression_v12/numberspace_A.pdf",
+      "sha256": "4dbabfea651037334e43d49633ecbbffa7d43a4d3362f0df050d61d6a774fce3",
+      "provenance": "Entirely invented constants in make_table_regression_v12.py; no business input PDF, names or amounts copied.",
+      "pages": [
+        "Amount USD 100;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "images": 0
+    },
+    {
+      "path": "samples/table_regression_v12/numberspace_B.pdf",
+      "sha256": "547803b3216f0612b9edbb18daa00748abcca374c514e388dea604a416a0f24f",
+      "provenance": "Entirely invented constants in make_table_regression_v12.py; no business input PDF, names or amounts copied.",
+      "pages": [
+        "Amount USD 1 00;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "images": 0
+    },
+    {
+      "path": "samples/table_regression_v12/paragraph_A.pdf",
+      "sha256": "4cac6e886f96399df330011c0a65cdb173630753ba179284fa1bb882c1d3ada3",
+      "provenance": "Entirely invented constants in make_table_regression_v12.py; no business input PDF, names or amounts copied.",
+      "pages": [
+        "The study follows this protocol;\n(b) 按照合同条款开展研究；\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "images": 0
+    },
+    {
+      "path": "samples/table_regression_v12/paragraph_B.pdf",
+      "sha256": "aa3a3864d189ce2336f09ef3b820f1fc2d653adcfc1703a9427072880869a7a9",
+      "provenance": "Entirely invented constants in make_table_regression_v12.py; no business input PDF, names or amounts copied.",
+      "pages": [
+        "The study follows this protocol;\n(b)  按照合同条款开展研\n究；\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "images": 0
+    },
+    {
+      "path": "samples/table_regression_v12/wordspace_A.pdf",
+      "sha256": "15c23783487a77bc10d587fd12dd869c8370934a8b2066f2dda1a4f4573e8974",
+      "provenance": "Entirely invented constants in make_table_regression_v12.py; no business input PDF, names or amounts copied.",
+      "pages": [
+        "Code AB C;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "images": 0
+    },
+    {
+      "path": "samples/table_regression_v12/wordspace_B.pdf",
+      "sha256": "c05618445abd5d6391ef85aaac1923ca4c173e966384accb4a97f912bf41d51e",
+      "provenance": "Entirely invented constants in make_table_regression_v12.py; no business input PDF, names or amounts copied.",
+      "pages": [
+        "Code A BC;\n"
+      ],
+      "metadata": {
+        "format": "PDF 1.7",
+        "title": "",
+        "author": "",
+        "subject": "",
+        "keywords": "",
+        "creator": "",
+        "producer": "",
+        "creationDate": "",
+        "modDate": "",
+        "trapped": "",
+        "encryption": null
+      },
+      "images": 0
+    }
+  ]
+}

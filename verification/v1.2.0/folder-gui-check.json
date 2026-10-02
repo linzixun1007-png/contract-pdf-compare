@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "profiles": [
+    "strict",
+    "regular",
+    "relaxed"
+  ],
+  "version": "1.2.0",
+  "region_checks": [
+    {
+      "case": "both_local_previews_render",
+      "ok": true
+    },
+    {
+      "case": "drag_coordinates_and_current_page",
+      "ok": true
+    },
+    {
+      "case": "editing_does_not_mutate_active_rules",
+      "ok": true
+    },
+    {
+      "case": "margin_preset_and_side",
+      "ok": true
+    },
+    {
+      "case": "apply_commits_and_closes_PDFs",
+      "ok": true
+    },
+    {
+      "case": "cancel_does_not_commit",
+      "ok": true
+    },
+    {
+      "case": "changed_file_pair_requires_region_review",
+      "ok": true
+    },
+    {
+      "case": "clear_returns_to_full_text_scope",
+      "ok": true
+    }
+  ]
+}

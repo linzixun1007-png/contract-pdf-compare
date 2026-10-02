@@ -1,3 +1,4 @@
+﻿# SPDX-License-Identifier: AGPL-3.0-only
 param([Parameter(Mandatory=$true)][string]$BuildDirectory,
       [string]$PythonExecutable = 'python')
 $ErrorActionPreference = 'Stop'
@@ -5,7 +6,7 @@ $releaseSource = Join-Path $PSScriptRoot '源码'
 $releaseWheels = Join-Path (Split-Path $PSScriptRoot -Parent) '04_离线依赖_Windows64位'
 $releaseBuild = [System.IO.Path]::GetFullPath($BuildDirectory)
 if($releaseBuild -eq [System.IO.Path]::GetPathRoot($releaseBuild)) { throw '请选择具体构建文件夹，不能使用磁盘根目录。' }
-& $PythonExecutable -c 'import sys,struct; raise SystemExit(0 if sys.version_info >= (3,10) and struct.calcsize("P")==8 else 1)'
+& $PythonExecutable -c 'import sys,struct; raise SystemExit(0 if sys.version_info >= (3,10) and struct.calcsize(chr(80))==8 else 1)'
 if($LASTEXITCODE -ne 0) { throw '需要可运行的 Windows 64 位 Python 3.10+；推荐 3.12。' }
 New-Item -ItemType Directory -Path $releaseBuild -Force | Out-Null
 $releaseEnvironment = Join-Path $releaseBuild '.venv-build'

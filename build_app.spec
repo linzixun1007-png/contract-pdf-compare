@@ -22,7 +22,9 @@ if tcl_root:
                      (str(dll_dir / "tk86t.dll"), ".")])
 
 a = Analysis([str(ROOT / "gui.py")], pathex=[str(ROOT)], binaries=binaries,
-             datas=datas, hiddenimports=["self_test", "pymupdf", "tkinter", "tkinter.ttk"],
+             datas=datas, hiddenimports=["self_test", "regression_tests", "gui_acceptance", "region_editor", "ignore_regions",
+                                        "table_layout", "table_regression_tests",
+                                        "pymupdf", "tkinter", "tkinter.ttk"],
              excludes=["numpy", "pandas", "matplotlib", "scipy", "IPython", "pytest"],
              noarchive=False)
 pyz = PYZ(a.pure)

@@ -4,7 +4,7 @@
 pdf_compare.py —— 合同 PDF 文字层对比引擎（去水印 → 归一化 → 快判 → 精确定位）
 
 设计要点（对应业务需求）：
-  1. 只比"文字层"，不比格式 —— 但坐标用于【识别水印】，不用于【对齐正文】。
+  1. 比较文字内容；坐标用于识别水印、忽略区域和有明确边框的表格。
   2. 水印只识别独立完整名称／限定标签，并结合所选档位的样式条件；
      位置、旋转或字号不能单独作为删除任意正文的依据。
   3. 正文按文字序列与单元边界比较；复杂表格及 PDF 阅读顺序不同仍可能误报。
@@ -23,11 +23,11 @@ from dataclasses import dataclass, field
 from difflib import SequenceMatcher
 from typing import Iterable
 
-VERSION = "1.1.0"
+VERSION = "1.2.0"
 PROFILES = {
-    "strict": ("严格复核", "保留字符和词间空格差异；只清理明确指定的医院水印。"),
-    "regular": ("常规合同", "忽略排版空白、全半角和兼容字形；清理具有明确特征的医院水印。"),
-    "relaxed": ("宽松排版", "在常规档基础上，放宽独立医院名及常见水印标签的识别。"),
+    "strict": ("严格复核", "保留字符及英语词、数字之间的空格；忽略中文排版空白，只清理明确指定的医院水印。"),
+    "regular": ("常规合同", "忽略中文排版空白、全半角和兼容字形；保留英语词及数字边界，清理具有明确特征的医院水印。"),
+    "relaxed": ("宽松排版", "忽略编号后空白及中文折行；保留英语词、数字和表格单元边界，放宽独立水印的识别。"),
 }
 
 # PyMuPDF：新版本推荐 `import pymupdf`，旧版本为 `import fitz`（已废弃但仍在）。
@@ -68,6 +68,8 @@ class TextLine:
     _cells: list = field(default_factory=list)   # 表格行的各单元格（重建后填充）
     page_w: float = 595.0
     page_h: float = 842.0
+    _glyphs: list = field(default_factory=list)
+    _table_id: str = ""
 
 
 @dataclass
@@ -100,6 +102,11 @@ class CompareResult:
     warnings: list = field(default_factory=list)
     source_a_hash: str = ""
     source_b_hash: str = ""
+    a_ignored: list = field(default_factory=list)
+    b_ignored: list = field(default_factory=list)
+    ignore_rules: list = field(default_factory=list)
+    excluded_differences: bool = False
+    page_counts: tuple = ()
 
 
 # ---------------------------------------------------------------------------
@@ -130,7 +137,7 @@ VARIANT_MAP = {
     "說": "说", "若": "若", "類": "类", "例": "例", "行": "行", "參": "参",
 }
 
-# 归一化时要去掉的空白
+# 归并排版空白，同时保留 ASCII 词与数字之间的分隔。
 _WS_RE = re.compile(r"\s+")
 
 
@@ -145,12 +152,10 @@ def normalize_text(s: str, drop_ws: bool = True, profile: str = "regular") -> st
         out.append(ch)
     s = "".join(out)
     if drop_ws:
-        if profile == "strict":
-            s = _WS_RE.sub(" ", s)
-            # Preserve ASCII word/number boundaries, discard Chinese layout spaces.
-            s = re.sub(r"(?<![A-Za-z0-9]) +| +(?![A-Za-z0-9])", "", s)
-        else:
-            s = _WS_RE.sub("", s)
+        s = _WS_RE.sub(" ", s)
+        # Ignore CJK layout spaces and repeated whitespace, while preserving
+        # ASCII word and number boundaries in every profile.
+        s = re.sub(r"(?<![A-Za-z0-9]) +| +(?![A-Za-z0-9])", "", s)
     return s.strip()
 
 
@@ -168,13 +173,15 @@ def extract_lines(pdf_path: str, profile: str = "regular") -> list[TextLine]:
     lines: list[TextLine] = []
     for pno in range(doc.page_count):
         page = doc[pno]
-        d = page.get_text("dict", flags=fitz.TEXTFLAGS_TEXT)
+        d = page.get_text("rawdict", flags=fitz.TEXTFLAGS_TEXT)
         for blk in d.get("blocks", []):
             if blk.get("type") != 0:
                 continue
             for ln in blk.get("lines", []):
                 direction = tuple(round(v, 3) for v in ln.get("dir", (1.0, 0.0)))
-                text = "".join(sp.get("text", "") for sp in ln.get("spans", []))
+                glyphs = [(ch.get("c", ""), ch["bbox"]) for sp in ln.get("spans", [])
+                          for ch in sp.get("chars", [])]
+                text = "".join(ch for ch, _ in glyphs)
                 if not text.strip():
                     continue
                 size = max((sp.get("size", 0) for sp in ln.get("spans", [])), default=0)
@@ -184,9 +191,52 @@ def extract_lines(pdf_path: str, profile: str = "regular") -> list[TextLine]:
                     x0=bbox[0], y0=bbox[1], x1=bbox[2], y1=bbox[3],
                     size=size, direction=direction,
                     page_w=page.rect.width, page_h=page.rect.height,
+                    _glyphs=glyphs,
                 ))
     doc.close()
     return lines
+
+
+def extract_with_regions(pdf_path, side, config, profile="regular"):
+    """Exclude only fully enclosed glyphs; intersecting body glyphs stay visible."""
+    retained, ignored = [], []
+    with fitz.open(pdf_path) as doc:
+        for pno, page in enumerate(doc):
+            regions = config.matching(side, pno)
+            width, height = page.rect.width, page.rect.height
+            # rawdict coordinates use the unrotated page frame; the preview uses
+            # page.rect. Transform glyph rectangles into the displayed frame.
+            matrix = page.rotation_matrix
+            for block in page.get_text("rawdict", flags=fitz.TEXTFLAGS_TEXT).get("blocks", []):
+                if block.get("type") != 0:
+                    continue
+                for row in block.get("lines", []):
+                    chars = [ch for span in row.get("spans", []) for ch in span.get("chars", [])]
+                    size = max((s.get("size", 0) for s in row.get("spans", [])), default=0)
+                    direction = tuple(round(v, 3) for v in row.get("dir", (1, 0)))
+                    kept, removed = [], {}
+                    for ch in chars:
+                        raw_box = ch.get("bbox", row.get("bbox", (0, 0, 0, 0)))
+                        box = tuple(fitz.Rect(raw_box) * matrix)
+                        region = next((r for r in regions if r.contains(box, width, height)), None)
+                        if region:
+                            removed.setdefault(region.name, []).append((ch.get("c", ""), raw_box))
+                        else:
+                            kept.append((ch.get("c", ""), raw_box))
+                    def item(pieces, reason=""):
+                        text = "".join(c for c, _ in pieces)
+                        box = fitz.Rect(pieces[0][1])
+                        for _, rectangle in pieces[1:]:
+                            box |= fitz.Rect(rectangle)
+                        return TextLine(pno, text, normalize_text(text, profile=profile), *box,
+                                        size, direction, wm_reason=reason, page_w=width, page_h=height,
+                                        _glyphs=pieces)
+                    if kept and "".join(c for c, _ in kept).strip():
+                        retained.append(item(kept))
+                    for name, pieces in removed.items():
+                        if "".join(c for c, _ in pieces).strip():
+                            ignored.append(item(pieces, name))
+    return retained, ignored
 
 
 # ---------------------------------------------------------------------------
@@ -226,7 +276,7 @@ def reconstruct_table_rows(lines: list[TextLine],
         if used[i]:
             continue
         ln = lines[i]
-        if not horiz_flags[i]:
+        if not horiz_flags[i] or ln._table_id:
             result.append(ln)
             used[i] = True
             continue
@@ -235,6 +285,8 @@ def reconstruct_table_rows(lines: list[TextLine],
         used[i] = True
         j = i + 1
         while j < n and not used[j] and horiz_flags[j]:
+            if lines[j]._table_id:
+                break
             if lines[j].page == ln.page and abs(lines[j].y0 - ln.y0) <= row_tol:
                 # 只有"同一行被切成多块"才合并：
                 # 要求 x 单调递增（从左到右），避免把上下行误并
@@ -248,19 +300,34 @@ def reconstruct_table_rows(lines: list[TextLine],
             result.append(ln)
         else:
             group.sort(key=lambda l: l.x0)
-            text = " ｜ ".join(x.text.strip() for x in group if x.text.strip())
-            norm_cells = [x.norm for x in group if x.norm]
+            gaps = [b.x0-a.x1 for a,b in zip(group,group[1:])]
+            numeric_fields = [bool(re.fullmatch(r"[+-]?[\d,.%]+", x.norm)) for x in group]
+            numeric = sum(numeric_fields)
+            # A separated clause number followed by prose is not a table.
+            two_cell_value = len(group) == 2 and not numeric_fields[0] and numeric_fields[1]
+            table_like = (all(gap >= max(8, ln.size*.7) for gap in gaps)
+                          and ((len(group) >= 3 and numeric >= 2) or two_cell_value))
+            if table_like:
+                text = " ｜ ".join(x.text.strip() for x in group)
+                norm = "｜".join(x.norm for x in group)
+                cells = [x.text.strip() for x in group]
+            else:
+                text = group[0].text.strip()
+                for previous, current in zip(group,group[1:]):
+                    text += (" " if current.x0-previous.x1 >= 1 else "") + current.text.strip()
+                norm = normalize_text(text)
+                cells = []
             result.append(TextLine(
                 page=ln.page,
                 text=text,
-                norm="｜".join(norm_cells),
+                norm=norm,
                 x0=min(x.x0 for x in group),
                 y0=min(x.y0 for x in group),
                 x1=max(x.x1 for x in group),
                 y1=max(x.y1 for x in group),
                 size=max(x.size for x in group),
                 direction=(1.0, 0.0),
-                _cells=[x.text.strip() for x in group if x.text.strip()],
+                _cells=cells,
                 page_w=ln.page_w, page_h=ln.page_h,
             ))
     return result
@@ -344,7 +411,7 @@ def detect_watermarks(lines: list[TextLine],
 
 
 # ---------------------------------------------------------------------------
-# 4. 对齐与差异定位（换行/错行 双重免疫）
+# 4. 对齐与差异定位
 # ---------------------------------------------------------------------------
 #
 # 关键设计：**不按"行"比对，按"字符流"比对。**
@@ -363,7 +430,20 @@ _TABLE_SEP = "\u2502"   # 表格单元格分隔符（与 reconstruct_table_rows 
 
 def _is_table_row(ln: TextLine) -> bool:
     """判断是否为重建出来的表格行（含多个单元格）。"""
-    return len(getattr(ln, "_cells", []) or []) >= 3
+    return bool(ln._table_id) or len(getattr(ln, "_cells", []) or []) >= 2
+
+
+def normalization_offsets(original, normalized):
+    """Map every normalized character back to its contributing source range."""
+    positions = [(0, 0)] * len(normalized)
+    for tag, i0, i1, j0, j1 in SequenceMatcher(None, original, normalized, autojunk=False).get_opcodes():
+        if tag == "equal":
+            for k in range(j1-j0):
+                positions[j0+k] = (i0+k, i0+k+1)
+        elif tag in ("replace", "insert"):
+            for k in range(j0, j1):
+                positions[k] = (i0, i1)
+    return positions
 
 
 def _build_units(lines: list[TextLine], profile: str = "regular") -> list[dict]:
@@ -385,15 +465,28 @@ def _build_units(lines: list[TextLine], profile: str = "regular") -> list[dict]:
             row_norms.append(_TABLE_SEP.join(
                 normalize_text(c, profile=profile) for c in ln._cells))
         else:
-            row_norms.append(ln.norm)
+            row_norms.append(normalize_text(ln.text, profile=profile))
 
     # 拼接连续字符流，维护"字符偏移 → 源行下标"
     stream_chars: list[str] = []
     offset_line: list[int] = []
+    offset_raw: list[tuple] = []
+    line_start: list[int] = []
     for idx, rn in enumerate(row_norms):
-        for ch in rn:
+        # English word wrapping normally happens between words. Preserve that
+        # boundary in every profile; numeric/model fragments remain contiguous.
+        if (stream_chars and rn and not is_table[idx]
+                and not is_table[idx-1] and re.search(r"[A-Za-z]$", row_norms[idx-1])
+                and re.match(r"[A-Za-z]", rn)):
+            stream_chars.append(" ")
+            offset_line.append(idx)
+            offset_raw.append((-1, 0, 0))
+        line_start.append(len(stream_chars))
+        spans = normalization_offsets(lines[idx].text, rn)
+        for position, ch in enumerate(rn):
             stream_chars.append(ch)
             offset_line.append(idx)
+            offset_raw.append((idx, *spans[position]))
     stream = "".join(stream_chars)
     if not stream:
         return []
@@ -401,12 +494,6 @@ def _build_units(lines: list[TextLine], profile: str = "regular") -> list[dict]:
     n = len(stream)
 
     # 预先算出每个表格行的字符区间
-    line_start: list[int] = []
-    cursor = 0
-    for rn in row_norms:
-        line_start.append(cursor)
-        cursor += len(rn)
-
     table_ranges: list[tuple[int, int]] = []
     for idx, tb in enumerate(is_table):
         if tb:
@@ -438,7 +525,7 @@ def _build_units(lines: list[TextLine], profile: str = "regular") -> list[dict]:
     for s, e, is_tb in segments:
         if is_tb:
             if e > s:
-                units.append(_make_unit(stream[s:e], s, e, lines, offset_line))
+                units.append(_make_unit(stream[s:e], s, e, lines, offset_line, offset_raw))
         else:
             # 段内按句切
             sub = stream[s:e]
@@ -447,15 +534,15 @@ def _build_units(lines: list[TextLine], profile: str = "regular") -> list[dict]:
                 end = m.end()
                 if end > local_pos:
                     units.append(_make_unit(sub[local_pos:end], s + local_pos,
-                                            s + end, lines, offset_line))
+                                            s + end, lines, offset_line, offset_raw))
                     local_pos = end
             if local_pos < len(sub):
                 units.append(_make_unit(sub[local_pos:], s + local_pos,
-                                        s + len(sub), lines, offset_line))
+                                        s + len(sub), lines, offset_line, offset_raw))
     return units
 
 
-def _make_unit(seg, start, end, lines, offset_line):
+def _make_unit(seg, start, end, lines, offset_line, offset_raw=None):
     lidx = offset_line[start] if start < len(offset_line) else 0
     return {
         "text": seg,
@@ -464,6 +551,7 @@ def _make_unit(seg, start, end, lines, offset_line):
         "end": end,
         "lines": lines,
         "offset_line": offset_line,
+        "offset_raw": offset_raw,
     }
 
 
@@ -473,6 +561,18 @@ def _unit_original_text(unit) -> str:
     lines = unit["lines"]
     if not ol:
         return ""
+    raw = unit.get("offset_raw")
+    if raw is not None:
+        ranges = {}
+        for line_index, begin, end in raw[unit["start"]:unit["end"]]:
+            if line_index < 0:
+                continue
+            if line_index not in ranges:
+                ranges[line_index] = [begin, end]
+            else:
+                ranges[line_index][0] = min(ranges[line_index][0], begin)
+                ranges[line_index][1] = max(ranges[line_index][1], end)
+        return " ".join(lines[i].text[begin:end].strip() for i, (begin, end) in ranges.items()).strip()
     i0 = ol[unit["start"]] if unit["start"] < len(ol) else 0
     i1 = ol[min(unit["end"] - 1, len(ol) - 1)] if ol else 0
     parts = []
@@ -481,66 +581,68 @@ def _unit_original_text(unit) -> str:
     return " ".join(p for p in parts if p)
 
 
+def align_units(a_units, b_units, threshold=.6):
+    """Pair differences monotonically so both documents keep their own order."""
+    a_text=[u["text"] for u in a_units]
+    b_text=[u["text"] for u in b_units]
+    output=[]
+    for tag,i0,i1,j0,j1 in SequenceMatcher(None,a_text,b_text,autojunk=False).get_opcodes():
+        if tag=="equal":
+            output.extend(("equal",a_units[i0+k],b_units[j0+k]) for k in range(i1-i0))
+        elif tag=="delete":
+            output.extend(("delete",u,None) for u in a_units[i0:i1])
+        elif tag=="insert":
+            output.extend(("insert",None,u) for u in b_units[j0:j1])
+        else:
+            aa,bb=a_units[i0:i1],b_units[j0:j1]
+            m,n=len(aa),len(bb)
+            costs=[[float(i+j) for j in range(n+1)] for i in range(m+1)]
+            trace={}
+            for i in range(1,m+1):
+                for j in range(1,n+1):
+                    sm=SequenceMatcher(None,aa[i-1]["text"],bb[j-1]["text"],autojunk=False)
+                    ratio=sm.ratio() if sm.real_quick_ratio()>=threshold else 0
+                    candidates=[(costs[i-1][j]+1,"delete"),(costs[i][j-1]+1,"insert")]
+                    if ratio>=threshold:
+                        candidates.insert(0,(costs[i-1][j-1]+1-ratio,"replace"))
+                    cost,operation=min(candidates,key=lambda item:item[0])
+                    costs[i][j],trace[i,j]=cost,operation
+            pairs=[]
+            i,j=m,n
+            while i or j:
+                operation=trace.get((i,j),"delete" if i else "insert")
+                if operation=="replace":
+                    pairs.append((operation,aa[i-1],bb[j-1])); i-=1; j-=1
+                elif operation=="delete":
+                    pairs.append((operation,aa[i-1],None)); i-=1
+                else:
+                    pairs.append((operation,None,bb[j-1])); j-=1
+            output.extend(reversed(pairs))
+    return output
+
+
 def align_diff(a_lines: list[TextLine], b_lines: list[TextLine],
                sim_threshold: float = 0.6, profile: str = "regular") -> list[DiffItem]:
     """
     在"句子单元"层面做对齐。因为句子的边界由标点决定、与页面宽度无关，
-    所以页面变窄导致的换行差异不会产生任何假阳性。
+    可以减少换行差异；文字提取顺序或表格结构不同仍需人工复核。
     """
     a_units = _build_units(a_lines, profile=profile)
     b_units = _build_units(b_lines, profile=profile)
 
-    a_txt = [u["text"] for u in a_units]
-    b_txt = [u["text"] for u in b_units]
-    sm = SequenceMatcher(a=a_txt, b=b_txt, autojunk=False)
-    diffs: list[DiffItem] = []
-
-    for tag, i1, i2, j1, j2 in sm.get_opcodes():
-        if tag == "equal":
+    diffs = []
+    for kind, old, new in align_units(a_units,b_units,sim_threshold):
+        if kind == "equal":
             continue
-        elif tag == "replace":
-            a_seg, b_seg = a_units[i1:i2], b_units[j1:j2]
-            used_b = set()
-            for ua in a_seg:
-                best_j, best_r = -1, 0.0
-                for ib, ub in enumerate(b_seg):
-                    if ib in used_b:
-                        continue
-                    r = SequenceMatcher(None, ua["text"], ub["text"]).ratio()
-                    if r > best_r:
-                        best_r, best_j = r, ib
-                if best_j >= 0 and best_r >= sim_threshold:
-                    used_b.add(best_j)
-                    ub = b_seg[best_j]
-                    diffs.append(DiffItem(
-                        kind="replace", page=ua["page"],
-                        old=_unit_original_text(ua), new=_unit_original_text(ub),
-                        similarity=round(best_r, 3),
-                        note="内容被改写",
-                    ))
-                else:
-                    diffs.append(DiffItem(
-                        kind="delete", page=ua["page"],
-                        old=_unit_original_text(ua),
-                        note="左有右无（疑似删改）",
-                    ))
-            for ib, ub in enumerate(b_seg):
-                if ib not in used_b:
-                    diffs.append(DiffItem(
-                        kind="insert", page=ub["page"],
-                        new=_unit_original_text(ub),
-                        note="右有左无（疑似新增）",
-                    ))
-        elif tag == "delete":
-            for ua in a_units[i1:i2]:
-                diffs.append(DiffItem(kind="delete", page=ua["page"],
-                                      old=_unit_original_text(ua),
-                                      note="左有右无（疑似删改）"))
-        elif tag == "insert":
-            for ub in b_units[j1:j2]:
-                diffs.append(DiffItem(kind="insert", page=ub["page"],
-                                      new=_unit_original_text(ub),
-                                      note="右有左无（疑似新增）"))
+        if kind == "replace":
+            ratio=SequenceMatcher(None,old["text"],new["text"],autojunk=False).ratio()
+            diffs.append(DiffItem(kind,old["page"],_unit_original_text(old),
+                                  _unit_original_text(new),round(ratio,3),"内容被改写"))
+        elif kind == "delete":
+            diffs.append(DiffItem(kind,old["page"],old=_unit_original_text(old),note="左有右无（疑似删改）"))
+        else:
+            diffs.append(DiffItem(kind,new["page"],new=_unit_original_text(new),note="右有左无（疑似新增）"))
+
     return diffs
 
 
@@ -549,7 +651,12 @@ def align_diff(a_lines: list[TextLine], b_lines: list[TextLine],
 # ---------------------------------------------------------------------------
 def compare_pdfs(a_path: str, b_path: str,
                   hospital_names: list[str] | None = None,
-                  profile: str = "strict") -> CompareResult:
+                  profile: str = "strict", ignore_config=None) -> CompareResult:
+    from ignore_regions import IgnoreConfig
+    if ignore_config is None:
+        ignore_config = IgnoreConfig()
+    if not isinstance(ignore_config, IgnoreConfig):
+        raise ValueError("忽略区域配置无效")
     if profile not in PROFILES:
         raise ValueError("未知比较档位")
     a_raw = extract_lines(a_path, profile=profile)
@@ -564,6 +671,11 @@ def compare_pdfs(a_path: str, b_path: str,
     res = CompareResult(a_path=a_path, b_path=b_path, passed=False,
                         profile=profile, source_a_hash=file_hash(a_path),
                         source_b_hash=file_hash(b_path))
+    with fitz.open(a_path) as adoc, fitz.open(b_path) as bdoc:
+        counts = {"A": len(adoc), "B": len(bdoc)}
+    ignore_config.validate_pages(counts)
+    res.page_counts = (counts["A"], counts["B"])
+    res.ignore_rules = [r.to_dict() for r in ignore_config.regions]
     for side, path, raw in (("A", a_path, a_raw), ("B", b_path, b_raw)):
         by_page = {}
         for line in raw:
@@ -584,6 +696,20 @@ def compare_pdfs(a_path: str, b_path: str,
         res.stage = "unavailable"
         res.message = "无法完整比较：存在无文字或疑似扫描页面。本版本不包含 OCR。"
         return res
+    if ignore_config.regions:
+        a_raw, res.a_ignored = extract_with_regions(a_path, "A", ignore_config, profile)
+        b_raw, res.b_ignored = extract_with_regions(b_path, "B", ignore_config, profile)
+        res.excluded_differences = ([normalize_text(l.text, profile=profile) for l in res.a_ignored] !=
+                                   [normalize_text(l.text, profile=profile) for l in res.b_ignored])
+        res.warnings.append(f"使用 {len(ignore_config.regions)} 个用户指定忽略区域；结论只适用于区域外文字。")
+        if res.excluded_differences:
+            res.warnings.append("忽略区域中的文字也存在差异，已在报告中单独列出，不计入正文比较结论。")
+        if not a_raw or not b_raw:
+            res.a_lines, res.b_lines = a_raw, b_raw
+            res.stage = "unavailable"
+            res.message = "忽略区域排除了某份文件的全部文字，无法给出有效比较结论。"
+            res.unavailable_reasons.append(res.message)
+            return res
     cfg = WatermarkConfig(hospital_names=list(hospital_names or []), profile=profile,
                           protected_norms={normalize_text(line.text) for line in a_raw})
     # The approved baseline is retained; only added candidate watermarks are filtered.
@@ -602,10 +728,14 @@ def compare_pdfs(a_path: str, b_path: str,
         res.message = "文字提取不完整，无法确认全部正文。本版本不包含 OCR。"
         return res
 
-    # 表格行重建：把同一水平线上的单元格碎块合并成完整表格行，
-    # 仅影响"展示与定位"，不改变内容一致性判定。
-    a_view = reconstruct_table_rows(a_clean)
-    b_view = reconstruct_table_rows(b_clean)
+    # 有明确边框的表格按实际行列重建；保留合并单元格、空单元格
+    # 和行顺序。其余内容沿用保守的相邻碎块处理。
+    from table_layout import rebuild_bordered_tables
+    a_structured, a_layout_warnings = rebuild_bordered_tables(a_path, a_clean, profile)
+    b_structured, b_layout_warnings = rebuild_bordered_tables(b_path, b_clean, profile)
+    a_view = reconstruct_table_rows(a_structured)
+    b_view = reconstruct_table_rows(b_structured)
+    res.warnings.extend(a_layout_warnings + b_layout_warnings)
 
     # 兜底：把两份都出现的水印行也纳入参考（若医院名未传）
     res.a_lines, res.b_lines = a_view, b_view
@@ -614,11 +744,11 @@ def compare_pdfs(a_path: str, b_path: str,
         res.warnings.append("严格档未填写医院名；水印文字会保留供人工核对。")
 
     # --- 阶段一：全局哈希快判 ---
-    # 哈希用"归一化连续流"，对换行/表格重排完全免疫
-    res.a_hash = content_fingerprint([l.norm for l in a_clean], profile=profile)
-    res.b_hash = content_fingerprint([l.norm for l in b_clean], profile=profile)
+    # 归一化字符与单元边界同时一致才通过；表格重排仍属于差异。
     a_units = [u["text"] for u in _build_units(a_view, profile=profile)]
     b_units = [u["text"] for u in _build_units(b_view, profile=profile)]
+    res.a_hash = content_fingerprint(a_units, profile=profile)
+    res.b_hash = content_fingerprint(b_units, profile=profile)
     if res.a_hash == res.b_hash and a_units == b_units:
         res.passed = True
         res.stage = "hash-pass"

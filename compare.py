@@ -8,7 +8,6 @@ compare.py —— 合同 PDF 对比工具 · 命令行入口
     python compare.py 内部定稿.pdf 医院水印版.pdf
     python compare.py 内部定稿.pdf 医院水印版.pdf -H 某某医院 -o report.html
     python compare.py a.pdf b.pdf -H 医院A -H 医院B      # 多个医院名
-    python compare.py 内部.pdf 医院.pdf --client "某某医院"   # 把医院名记为校验客户
 
 最简用法（连医院名都不给也行）：
     python compare.py 内部定稿.pdf 医院水印版.pdf
@@ -58,6 +57,14 @@ def c(text: str, color: str) -> str:
     return f"{color}{text}{C.END}" if C._on else text
 
 
+def _safe_console():
+    # A GBK Windows terminal must not prevent saving a UTF-8 report when a
+    # contract, filename or decorative symbol contains another Unicode glyph.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(errors="backslashreplace")
+
+
 # ---------------------------------------------------------------------------
 # 友好错误提示
 # ---------------------------------------------------------------------------
@@ -102,10 +109,12 @@ def build_parser():
                     help="生成报告后不自动打开浏览器")
     ap.add_argument("--profile", choices=["strict", "regular", "relaxed"], default="strict",
                     help="比较档位：strict 严格（默认），regular 常规，relaxed 宽松")
+    ap.add_argument("--ignore-regions", help="从 JSON 文件加载用户指定忽略区域（文件不存在或无效则停止）")
     return ap
 
 
 def main(argv=None):
+    _safe_console()
     _init_color()
     args = build_parser().parse_args(argv)
 
@@ -121,7 +130,9 @@ def main(argv=None):
 
     # 执行对比
     try:
-        result = compare_pdfs(a, b, hospital_names=args.hospital, profile=args.profile)
+        from ignore_regions import IgnoreConfig
+        rules = IgnoreConfig.load(args.ignore_regions) if args.ignore_regions else IgnoreConfig()
+        result = compare_pdfs(a, b, hospital_names=args.hospital, profile=args.profile, ignore_config=rules)
     except Exception as e:  # noqa: BLE001
         print(c("\n[ 比对失败 ] ", C.RED) + f"{type(e).__name__}: {e}")
         print(c("若怀疑是文件损坏或加密，请用 PDF 阅读器确认能正常打开、且可以选中复制文字。",

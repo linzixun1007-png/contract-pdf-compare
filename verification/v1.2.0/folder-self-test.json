@@ -1,0 +1,906 @@
+{
+  "version": "1.2.0",
+  "passed": true,
+  "passed_count": 139,
+  "total_count": 139,
+  "checks": [
+    {
+      "profile": "strict",
+      "case": "hospital_A_shift",
+      "ok": true,
+      "passed": true,
+      "stage": "hash-pass",
+      "diff_count": 0
+    },
+    {
+      "profile": "strict",
+      "case": "hospital_C_textwm",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "strict",
+      "case": "hospital_E_narrow",
+      "ok": true,
+      "passed": true,
+      "stage": "hash-pass",
+      "diff_count": 0
+    },
+    {
+      "profile": "strict",
+      "case": "hospital_B_amount",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "strict",
+      "case": "hospital_D_deleted",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 2
+    },
+    {
+      "profile": "strict",
+      "case": "hospital_F_narrow_amount",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "strict",
+      "case": "table_qr_textwm",
+      "ok": true,
+      "passed": true,
+      "stage": "hash-pass",
+      "diff_count": 0
+    },
+    {
+      "profile": "strict",
+      "case": "table_qr_imgwm",
+      "ok": true,
+      "passed": true,
+      "stage": "hash-pass",
+      "diff_count": 0
+    },
+    {
+      "profile": "strict",
+      "case": "table_all_wm",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "strict",
+      "case": "table_num_changed",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 2
+    },
+    {
+      "profile": "strict",
+      "case": "table_regression_v12/grid_reordered_B",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 2
+    },
+    {
+      "profile": "strict",
+      "case": "scan_only_changed",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "strict",
+      "case": "mixed_scan_changed",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "strict",
+      "case": "added_scan_page",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "strict",
+      "case": "top_right_contract_id",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "strict",
+      "case": "large_font_amount",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "strict",
+      "case": "short_hospital_party",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "strict",
+      "case": "rotated_amount",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "strict",
+      "case": "table_cell_boundary_changed",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "strict",
+      "case": "self_compare",
+      "ok": true
+    },
+    {
+      "profile": "regular",
+      "case": "hospital_A_shift",
+      "ok": true,
+      "passed": true,
+      "stage": "hash-pass",
+      "diff_count": 0
+    },
+    {
+      "profile": "regular",
+      "case": "hospital_C_textwm",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "regular",
+      "case": "hospital_E_narrow",
+      "ok": true,
+      "passed": true,
+      "stage": "hash-pass",
+      "diff_count": 0
+    },
+    {
+      "profile": "regular",
+      "case": "hospital_B_amount",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "regular",
+      "case": "hospital_D_deleted",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 2
+    },
+    {
+      "profile": "regular",
+      "case": "hospital_F_narrow_amount",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "regular",
+      "case": "table_qr_textwm",
+      "ok": true,
+      "passed": true,
+      "stage": "hash-pass",
+      "diff_count": 0
+    },
+    {
+      "profile": "regular",
+      "case": "table_qr_imgwm",
+      "ok": true,
+      "passed": true,
+      "stage": "hash-pass",
+      "diff_count": 0
+    },
+    {
+      "profile": "regular",
+      "case": "table_all_wm",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "regular",
+      "case": "table_num_changed",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 2
+    },
+    {
+      "profile": "regular",
+      "case": "table_regression_v12/grid_reordered_B",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 2
+    },
+    {
+      "profile": "regular",
+      "case": "scan_only_changed",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "regular",
+      "case": "mixed_scan_changed",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "regular",
+      "case": "added_scan_page",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "regular",
+      "case": "top_right_contract_id",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "regular",
+      "case": "large_font_amount",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "regular",
+      "case": "short_hospital_party",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "regular",
+      "case": "rotated_amount",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "regular",
+      "case": "table_cell_boundary_changed",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "regular",
+      "case": "self_compare",
+      "ok": true
+    },
+    {
+      "profile": "relaxed",
+      "case": "hospital_A_shift",
+      "ok": true,
+      "passed": true,
+      "stage": "hash-pass",
+      "diff_count": 0
+    },
+    {
+      "profile": "relaxed",
+      "case": "hospital_C_textwm",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "relaxed",
+      "case": "hospital_E_narrow",
+      "ok": true,
+      "passed": true,
+      "stage": "hash-pass",
+      "diff_count": 0
+    },
+    {
+      "profile": "relaxed",
+      "case": "hospital_B_amount",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "relaxed",
+      "case": "hospital_D_deleted",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 2
+    },
+    {
+      "profile": "relaxed",
+      "case": "hospital_F_narrow_amount",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "relaxed",
+      "case": "table_qr_textwm",
+      "ok": true,
+      "passed": true,
+      "stage": "hash-pass",
+      "diff_count": 0
+    },
+    {
+      "profile": "relaxed",
+      "case": "table_qr_imgwm",
+      "ok": true,
+      "passed": true,
+      "stage": "hash-pass",
+      "diff_count": 0
+    },
+    {
+      "profile": "relaxed",
+      "case": "table_all_wm",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "relaxed",
+      "case": "table_num_changed",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 2
+    },
+    {
+      "profile": "relaxed",
+      "case": "table_regression_v12/grid_reordered_B",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 2
+    },
+    {
+      "profile": "relaxed",
+      "case": "scan_only_changed",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "relaxed",
+      "case": "mixed_scan_changed",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "relaxed",
+      "case": "added_scan_page",
+      "ok": true,
+      "passed": false,
+      "stage": "unavailable",
+      "diff_count": 0
+    },
+    {
+      "profile": "relaxed",
+      "case": "top_right_contract_id",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "relaxed",
+      "case": "large_font_amount",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "relaxed",
+      "case": "short_hospital_party",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "relaxed",
+      "case": "rotated_amount",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "relaxed",
+      "case": "table_cell_boundary_changed",
+      "ok": true,
+      "passed": false,
+      "stage": "aligned",
+      "diff_count": 1
+    },
+    {
+      "profile": "relaxed",
+      "case": "self_compare",
+      "ok": true
+    },
+    {
+      "case": "strict_semantic_space",
+      "ok": true
+    },
+    {
+      "case": "strict_superscript",
+      "ok": true
+    },
+    {
+      "case": "reflow_without_scope_is_flagged",
+      "ok": true,
+      "profile": "strict"
+    },
+    {
+      "case": "cross_page_reflow_with_explicit_margins",
+      "ok": true,
+      "profile": "strict"
+    },
+    {
+      "case": "body_amount_change_outside_scope",
+      "ok": true,
+      "profile": "strict"
+    },
+    {
+      "case": "excluded_change_is_separately_reported",
+      "ok": true,
+      "profile": "strict"
+    },
+    {
+      "case": "partially_intersected_glyph_remains_compared",
+      "ok": true,
+      "profile": "strict"
+    },
+    {
+      "case": "partial_line_exclusion_preserves_remainder",
+      "ok": true,
+      "profile": "strict"
+    },
+    {
+      "case": "percentage_masks_on_different_page_sizes",
+      "ok": true,
+      "profile": "strict"
+    },
+    {
+      "case": "reflow_without_scope_is_flagged",
+      "ok": true,
+      "profile": "regular"
+    },
+    {
+      "case": "cross_page_reflow_with_explicit_margins",
+      "ok": true,
+      "profile": "regular"
+    },
+    {
+      "case": "body_amount_change_outside_scope",
+      "ok": true,
+      "profile": "regular"
+    },
+    {
+      "case": "excluded_change_is_separately_reported",
+      "ok": true,
+      "profile": "regular"
+    },
+    {
+      "case": "partially_intersected_glyph_remains_compared",
+      "ok": true,
+      "profile": "regular"
+    },
+    {
+      "case": "partial_line_exclusion_preserves_remainder",
+      "ok": true,
+      "profile": "regular"
+    },
+    {
+      "case": "percentage_masks_on_different_page_sizes",
+      "ok": true,
+      "profile": "regular"
+    },
+    {
+      "case": "reflow_without_scope_is_flagged",
+      "ok": true,
+      "profile": "relaxed"
+    },
+    {
+      "case": "cross_page_reflow_with_explicit_margins",
+      "ok": true,
+      "profile": "relaxed"
+    },
+    {
+      "case": "body_amount_change_outside_scope",
+      "ok": true,
+      "profile": "relaxed"
+    },
+    {
+      "case": "excluded_change_is_separately_reported",
+      "ok": true,
+      "profile": "relaxed"
+    },
+    {
+      "case": "partially_intersected_glyph_remains_compared",
+      "ok": true,
+      "profile": "relaxed"
+    },
+    {
+      "case": "partial_line_exclusion_preserves_remainder",
+      "ok": true,
+      "profile": "relaxed"
+    },
+    {
+      "case": "percentage_masks_on_different_page_sizes",
+      "ok": true,
+      "profile": "relaxed"
+    },
+    {
+      "case": "page_restriction_preserves_other_page_edits",
+      "ok": true
+    },
+    {
+      "case": "all_page_scope_applies_to_each_page",
+      "ok": true
+    },
+    {
+      "case": "independent_A_mask",
+      "ok": true
+    },
+    {
+      "case": "wrong_side_does_not_hide_A_text",
+      "ok": true
+    },
+    {
+      "case": "preview_coordinates_match_rotated_PDF",
+      "ok": true
+    },
+    {
+      "case": "empty_comparison_scope_never_passes",
+      "ok": true
+    },
+    {
+      "case": "scan_cannot_be_made_to_pass_by_masking",
+      "ok": true
+    },
+    {
+      "case": "missing_page_is_rejected",
+      "ok": true
+    },
+    {
+      "case": "zero_area_is_rejected",
+      "ok": true
+    },
+    {
+      "case": "out_of_page_is_rejected",
+      "ok": true
+    },
+    {
+      "case": "unsupported_schema_is_rejected",
+      "ok": true
+    },
+    {
+      "case": "unsupported_coordinate_system_is_rejected",
+      "ok": true
+    },
+    {
+      "case": "physical_page_selection",
+      "ok": true
+    },
+    {
+      "case": "rules_round_trip_contains_geometry_only",
+      "ok": true
+    },
+    {
+      "case": "missing_rules_file_is_rejected",
+      "ok": true
+    },
+    {
+      "case": "report_limits_pass_to_compared_scope",
+      "ok": true
+    },
+    {
+      "case": "report_never_repeats_adjacent_sentence",
+      "ok": true
+    },
+    {
+      "case": "ignored_whitespace_has_no_change_highlight",
+      "ok": true
+    },
+    {
+      "case": "amount_highlight_tracks_actual_edit",
+      "ok": true
+    },
+    {
+      "case": "normalized_full_width_has_no_change_highlight",
+      "ok": true
+    },
+    {
+      "case": "grid_stream_B",
+      "profile": "strict",
+      "ok": true,
+      "passed": true,
+      "diff_count": 0
+    },
+    {
+      "case": "grid_wrap_B",
+      "profile": "strict",
+      "ok": true,
+      "passed": true,
+      "diff_count": 0
+    },
+    {
+      "case": "grid_wholeline_B",
+      "profile": "strict",
+      "ok": true,
+      "passed": true,
+      "diff_count": 0
+    },
+    {
+      "case": "grid_amount_B",
+      "profile": "strict",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "grid_merged_B",
+      "profile": "strict",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "grid_reordered_B",
+      "profile": "strict",
+      "ok": true,
+      "passed": false,
+      "diff_count": 2
+    },
+    {
+      "case": "grid_blank_B",
+      "profile": "strict",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "paragraph_B",
+      "profile": "strict",
+      "ok": true,
+      "passed": true,
+      "diff_count": 0
+    },
+    {
+      "case": "wordspace_B",
+      "profile": "strict",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "numberspace_B",
+      "profile": "strict",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "grid_stream_B",
+      "profile": "regular",
+      "ok": true,
+      "passed": true,
+      "diff_count": 0
+    },
+    {
+      "case": "grid_wrap_B",
+      "profile": "regular",
+      "ok": true,
+      "passed": true,
+      "diff_count": 0
+    },
+    {
+      "case": "grid_wholeline_B",
+      "profile": "regular",
+      "ok": true,
+      "passed": true,
+      "diff_count": 0
+    },
+    {
+      "case": "grid_amount_B",
+      "profile": "regular",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "grid_merged_B",
+      "profile": "regular",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "grid_reordered_B",
+      "profile": "regular",
+      "ok": true,
+      "passed": false,
+      "diff_count": 2
+    },
+    {
+      "case": "grid_blank_B",
+      "profile": "regular",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "paragraph_B",
+      "profile": "regular",
+      "ok": true,
+      "passed": true,
+      "diff_count": 0
+    },
+    {
+      "case": "wordspace_B",
+      "profile": "regular",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "numberspace_B",
+      "profile": "regular",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "grid_stream_B",
+      "profile": "relaxed",
+      "ok": true,
+      "passed": true,
+      "diff_count": 0
+    },
+    {
+      "case": "grid_wrap_B",
+      "profile": "relaxed",
+      "ok": true,
+      "passed": true,
+      "diff_count": 0
+    },
+    {
+      "case": "grid_wholeline_B",
+      "profile": "relaxed",
+      "ok": true,
+      "passed": true,
+      "diff_count": 0
+    },
+    {
+      "case": "grid_amount_B",
+      "profile": "relaxed",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "grid_merged_B",
+      "profile": "relaxed",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "grid_reordered_B",
+      "profile": "relaxed",
+      "ok": true,
+      "passed": false,
+      "diff_count": 2
+    },
+    {
+      "case": "grid_blank_B",
+      "profile": "relaxed",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "paragraph_B",
+      "profile": "relaxed",
+      "ok": true,
+      "passed": true,
+      "diff_count": 0
+    },
+    {
+      "case": "wordspace_B",
+      "profile": "relaxed",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "numberspace_B",
+      "profile": "relaxed",
+      "ok": true,
+      "passed": false,
+      "diff_count": 1
+    },
+    {
+      "case": "physical_grid_order_ignores_object_stream_order",
+      "ok": true
+    },
+    {
+      "case": "merged_two_cell_rows_are_atomic",
+      "ok": true
+    },
+    {
+      "case": "merged_cell_edit_remains_separate_from_appendix",
+      "ok": true
+    },
+    {
+      "case": "alignment_preserves_both_document_orders",
+      "ok": true
+    },
+    {
+      "case": "layout_only_has_no_modified_rows",
+      "ok": true
+    },
+    {
+      "case": "clause_number_and_prose_are_not_a_two_cell_table",
+      "ok": true
+    }
+  ]
+}

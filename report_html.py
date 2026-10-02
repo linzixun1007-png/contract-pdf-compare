@@ -16,25 +16,36 @@ from pathlib import Path
 from datetime import datetime
 
 
-def _char_diff(old: str, new: str) -> tuple[str, str]:
+def _char_diff(old: str, new: str, profile="regular") -> tuple[str, str]:
     """返回 (old_html, new_html)，用 <del>/<ins> 标出字符差异。"""
-    sm = SequenceMatcher(None, old, new, autojunk=False)
-    o, n = [], []
+    from pdf_compare import normalize_text, normalization_offsets
+    normalized_old = normalize_text(old, profile=profile)
+    normalized_new = normalize_text(new, profile=profile)
+    maps = (normalization_offsets(old, normalized_old), normalization_offsets(new, normalized_new))
+    masks = ([False]*len(old), [False]*len(new))
+    sm = SequenceMatcher(None, normalized_old, normalized_new, autojunk=False)
     for tag, i1, i2, j1, j2 in sm.get_opcodes():
-        if tag == "equal":
-            o.append(_html.escape(old[i1:i2]))
-            n.append(_html.escape(new[j1:j2]))
-        else:
-            if tag in ("replace", "delete"):
-                o.append(f'<del>{_html.escape(old[i1:i2])}</del>')
-            if tag in ("replace", "insert"):
-                n.append(f'<ins>{_html.escape(new[j1:j2])}</ins>')
-    return "".join(o), "".join(n)
+        for side, first, last, changed in ((0, i1, i2, tag in ("replace", "delete")),
+                                           (1, j1, j2, tag in ("replace", "insert"))):
+            if changed:
+                for begin, end in maps[side][first:last]:
+                    for position in range(begin, end):
+                        masks[side][position] = True
+    def markup(text, mask, tag):
+        if not text: return ""
+        parts, begin = [], 0
+        for end in range(1, len(text)+1):
+            if end == len(text) or mask[end] != mask[begin]:
+                value = _html.escape(text[begin:end])
+                parts.append(f"<{tag}>{value}</{tag}>" if mask[begin] else value)
+                begin = end
+        return "".join(parts)
+    return markup(old, masks[0], "del"), markup(new, masks[1], "ins")
 
 
 def render_report(result, title_a="内部定稿版", title_b="医院水印版",
                   out_path="report.html") -> str:
-    from pdf_compare import _build_units, _unit_original_text
+    from pdf_compare import _build_units, _unit_original_text, align_units
 
     # 与引擎保持一致：按「句子单元」而非「行」对齐展示，
     # 这样页面变窄导致的换行差异不会在图里显示成一堆假差异。
@@ -42,64 +53,25 @@ def render_report(result, title_a="内部定稿版", title_b="医院水印版",
     b_units = _build_units(result.b_lines, profile=result.profile)
     rows_html = []
 
-    a_txt = [u["text"] for u in a_units]
-    b_txt = [u["text"] for u in b_units]
-    sm = SequenceMatcher(a=a_txt, b=b_txt, autojunk=False)
-
     def unit_cell(unit, cls=""):
         if unit is None:
             return '<td class="cell empty"></td>'
         pg = f'<span class="pg">P{unit["page"]+1}</span>'
         return f'<td class="cell {cls}">{pg}{_html.escape(_unit_original_text(unit))}</td>'
 
-    for tag, i1, i2, j1, j2 in sm.get_opcodes():
-        if tag == "equal":
-            for k in range(i2 - i1):
-                rows_html.append(
-                    "<tr>" + unit_cell(a_units[i1 + k]) + unit_cell(b_units[j1 + k]) + "</tr>")
-        elif tag == "replace":
-            a_seg, b_seg = a_units[i1:i2], b_units[j1:j2]
-            used_b = set()
-            pairs = []
-            for ua in a_seg:
-                best_j, best_r = -1, 0.0
-                for ib, ub in enumerate(b_seg):
-                    if ib in used_b:
-                        continue
-                    r = SequenceMatcher(None, ua["text"], ub["text"]).ratio()
-                    if r > best_r:
-                        best_r, best_j = r, ib
-                if best_j >= 0 and best_r >= 0.6:
-                    used_b.add(best_j)
-                    pairs.append((ua, b_seg[best_j]))
-                else:
-                    pairs.append((ua, None))
-            for ib, ub in enumerate(b_seg):
-                if ib not in used_b:
-                    pairs.append((None, ub))
-            for ua, ub in pairs:
-                if ua is not None and ub is not None:
-                    oh, nh = _char_diff(_unit_original_text(ua), _unit_original_text(ub))
-                    pg_a = f'<span class="pg">P{ua["page"]+1}</span>'
-                    pg_b = f'<span class="pg">P{ub["page"]+1}</span>'
-                    rows_html.append(
-                        f'<tr class="row-mod">'
-                        f'<td class="cell mod">{pg_a}{oh}</td>'
-                        f'<td class="cell mod">{pg_b}{nh}</td></tr>')
-                elif ua is not None:
-                    rows_html.append(
-                        f'<tr class="row-del">{unit_cell(ua, "del")}<td class="cell empty"></td></tr>')
-                else:
-                    rows_html.append(
-                        f'<tr class="row-ins"><td class="cell empty"></td>{unit_cell(ub, "ins")}</tr>')
-        elif tag == "delete":
-            for ua in a_units[i1:i2]:
-                rows_html.append(
-                    f'<tr class="row-del">{unit_cell(ua, "del")}<td class="cell empty"></td></tr>')
-        elif tag == "insert":
-            for ub in b_units[j1:j2]:
-                rows_html.append(
-                    f'<tr class="row-ins"><td class="cell empty"></td>{unit_cell(ub, "ins")}</tr>')
+    for kind,ua,ub in align_units(a_units,b_units):
+        if kind == "equal":
+            rows_html.append("<tr>"+unit_cell(ua)+unit_cell(ub)+"</tr>")
+        elif kind == "replace":
+            oh,nh=_char_diff(_unit_original_text(ua),_unit_original_text(ub),result.profile)
+            pg_a=f'<span class="pg">P{ua["page"]+1}</span>'
+            pg_b=f'<span class="pg">P{ub["page"]+1}</span>'
+            rows_html.append(f'<tr class="row-mod"><td class="cell mod">{pg_a}{oh}</td>'
+                             f'<td class="cell mod">{pg_b}{nh}</td></tr>')
+        elif kind == "delete":
+            rows_html.append(f'<tr class="row-del">{unit_cell(ua,"del")}<td class="cell empty"></td></tr>')
+        else:
+            rows_html.append(f'<tr class="row-ins"><td class="cell empty"></td>{unit_cell(ub,"ins")}</tr>')
 
     # 水印明细
     def wm_list(items):
@@ -119,6 +91,27 @@ def render_report(result, title_a="内部定稿版", title_b="医院水印版",
                     result.unavailable_reasons + result.warnings)
     if not notes:
         notes = "<li>文字比较不覆盖图像、印章、签名及排版。</li>"
+    if result.ignore_rules and result.passed:
+        verdict = "✓ 指定忽略区域以外，未发现文字差异"
+    def excluded_list(items):
+        if not items:
+            return "<li>（无）</li>"
+        return "".join(f'<li>P{line.page+1} · {_html.escape(line.wm_reason)}：'
+                       f'<code>{_html.escape(line.text)}</code></li>' for line in items)
+    rule_rows = "".join(f'<li>{_html.escape(rule["name"])} · '
+                        f'{_html.escape(rule["side"])} · '
+                        f'页码：{_html.escape(str(rule["pages"] or "全部"))} · '
+                        f'矩形（页面比例）：{_html.escape(str(rule["rect"]))}</li>' for rule in result.ignore_rules)
+    scope_card = ""
+    if result.ignore_rules:
+        scope_card = f"""<div class="card">
+          <h2>用户指定忽略区域</h2><ul>{rule_rows}</ul>
+          <p>仅排除完全落入框内的文字字符，擦边正文会保留。页码是 PDF 实际页序。
+          被排除的内容不参与一致性结论；请核对下方清单及区域预览。</p>
+          <p>忽略区域中的文字差异：{"有（单独复核）" if result.excluded_differences else "未检出"}</p>
+          <details><summary>A 排除文字（{len(result.a_ignored)} 段）</summary><ul>{excluded_list(result.a_ignored)}</ul></details>
+          <details><summary>B 排除文字（{len(result.b_ignored)} 段）</summary><ul>{excluded_list(result.b_ignored)}</ul></details>
+        </div>"""
 
     html_doc = f"""<!DOCTYPE html>
 <html lang="zh-CN">
@@ -206,6 +199,7 @@ def render_report(result, title_a="内部定稿版", title_b="医院水印版",
     <h2>水印剔除明细（医院水印版）</h2>
     <ul>{wm_list(result.b_watermarks)}</ul>
   </div>
+  {scope_card}
 
   <div class="card">
     <h2>文字对照（请结合原 PDF 复核）</h2>
