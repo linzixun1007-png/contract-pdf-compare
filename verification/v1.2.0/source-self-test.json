@@ -1,8 +1,8 @@
 {
   "version": "1.2.0",
   "passed": true,
-  "passed_count": 139,
-  "total_count": 139,
+  "passed_count": 143,
+  "total_count": 143,
   "checks": [
     {
       "profile": "strict",
@@ -900,6 +900,22 @@
     },
     {
       "case": "clause_number_and_prose_are_not_a_two_cell_table",
+      "ok": true
+    },
+    {
+      "case": "relaxed_sentence_boundary_spaces",
+      "ok": true
+    },
+    {
+      "case": "relaxed_numeric_line_wrap",
+      "ok": true
+    },
+    {
+      "case": "relaxed_amount_edit_preserved",
+      "ok": true
+    },
+    {
+      "case": "relaxed_word_boundary_preserved",
       "ok": true
     }
   ]

@@ -539,6 +539,13 @@ def _build_units(lines: list[TextLine], profile: str = "regular") -> list[dict]:
             if local_pos < len(sub):
                 units.append(_make_unit(sub[local_pos:], s + local_pos,
                                         s + len(sub), lines, offset_line, offset_raw))
+    if profile == "relaxed":
+        for unit in units:
+            # Use the very same reconstructed text for equality and highlighting.
+            # Line joins follow the comparison stream, rather than adding spaces
+            # at every PDF line boundary.
+            unit["layout_relaxed"] = True
+            unit["text"] = normalize_text(_unit_original_text(unit), profile=profile)
     return units
 
 
@@ -572,6 +579,18 @@ def _unit_original_text(unit) -> str:
             else:
                 ranges[line_index][0] = min(ranges[line_index][0], begin)
                 ranges[line_index][1] = max(ranges[line_index][1], end)
+        if unit.get("layout_relaxed"):
+            parts = []
+            previous = None
+            for i, (begin, end) in ranges.items():
+                if previous is not None:
+                    joins = [p for p in range(unit["start"], unit["end"])
+                             if raw[p][0] == -1 and ol[p] == i]
+                    if joins:
+                        parts.append(" ")
+                parts.append(lines[i].text[begin:end].strip())
+                previous = i
+            return "".join(parts).strip()
         return " ".join(lines[i].text[begin:end].strip() for i, (begin, end) in ranges.items()).strip()
     i0 = ol[unit["start"]] if unit["start"] < len(ol) else 0
     i1 = ol[min(unit["end"] - 1, len(ol) - 1)] if ol else 0

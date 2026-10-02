@@ -57,7 +57,7 @@ python -m pip install --require-hashes -r requirements-build.txt
 python build_exe.py --mode both --output build
 ~~~
 
-内置验收有 139 项检查和 67 份虚构 PDF，另有 8 项忽略区域交互检查。测试覆盖已知场景，不是准确率承诺。原始样例中 4 个文字映射异常场景预期为“无法完整比较”；详情见 [测试说明](docs/测试说明.md)。
+内置验收有 143 项检查和 67 份虚构 PDF，另有 8 项忽略区域交互检查。测试覆盖已知场景，不是准确率承诺。原始样例中 4 个文字映射异常场景预期为“无法完整比较”；详情见 [测试说明](docs/测试说明.md)。
 两种 exe 使用同一份源码和比较逻辑。详见 [构建与部署](docs/构建与部署.md)。
 
 ## 开源许可

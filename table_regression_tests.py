@@ -53,4 +53,24 @@ def run_table_checks(samples):
                    not fragments[0]._cells and all(
                        [u['text'] for u in _build_units(fragments,profile)] ==
                        [u['text'] for u in _build_units(whole,profile)] for profile in PROFILES)})
+    def relaxed_text(parts):
+        return [u['text'] for u in _build_units(
+            [line(text,40,230) for text in parts], 'relaxed')]
+    for name, left, right, equal in [
+        ('relaxed_sentence_boundary_spaces', ['Payment is due. Next clause;'],
+         ['Payment is due.', 'Next clause;'], True),
+        ('relaxed_numeric_line_wrap', ['金额120', '0元；'], ['金额1200元；'], True),
+        ('relaxed_amount_edit_preserved', ['金额120', '0元；'], ['金额1800元；'], False),
+        ('relaxed_word_boundary_preserved', ['Pay AB C;'], ['Pay A BC;'], False),
+    ]:
+        aa = _build_units([line(t,40,230) for t in left], 'relaxed')
+        bb = _build_units([line(t,40,230) for t in right], 'relaxed')
+        from report_html import _char_diff
+        pairs = align_units(aa,bb)
+        valid = (relaxed_text(left) == relaxed_text(right)) == equal
+        for kind,a,b in pairs:
+            if kind == 'replace':
+                old,new = _char_diff(_unit_original_text(a),_unit_original_text(b),'relaxed')
+                valid = valid and ('<del>' in old or '<ins>' in new)
+        checks.append({'case':name,'ok':valid})
     return checks
